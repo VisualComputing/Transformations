@@ -1183,21 +1183,30 @@ Assume M is a
    </p>
 
 </div>
+
 V:
 
 ## Orthogonal matrix
 ### Geometric Interpretation
 
 Let,
-
+<div class="ulist">
+<p>
       `$r_{1} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix}$`
+</p><p>
       `$r_{2} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix}$`
+</p><p>
       `$r_{3} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix}$`
-
+</p>
+</div>
 Then we must have that,
-
+<div class="ulist">
+<p>
       `$r_{1}r_{1} = r_{2}r_{2} = r_{3}r_{3} = 1 $`  
+</p><p>
       `$r_{i}r_{j} = 0\ \ i=1,2,3 \ \ j=1,2,3 \ \ i\ne j$`  
+</p>
+</div>
 
 V:
 ## Orthogonal matrix
@@ -1212,13 +1221,13 @@ V:
 
 ## Affine transformations: Rotation
 ### Rodrigues' rotation formula
-Is an efficient algorithm for rotating a vector in space, given an angle of rotation `$\beta$`, a vector `$ v $` in `$R^3$` and `$ k $` a unit vector describing the axis of rotation we have:  `$v_{rot} = v \cos \beta + (k \times v )\sin \beta  + k(k \cdot v) (1 - \cos  \beta) $`
+Is an efficient algorithm for rotating a vector in space, given an angle of rotation `$\beta$a`, a vector `$ v $` in `$R^3$` and `$ k $` a unit vector describing the axis of rotation we have:  `$v_{rot} = v \cos \beta + (k \times v )\sin \beta  + k(k \cdot v) (1 - \cos  \beta) $`
 
 We can compute a rotation matrix `$R \in SO(3)$`
 
 V:
 
-Representing `$ v $` and `$ (k \times v ) $`as column matrices, then represent the cross product as a matrix product
+Representing `$ v $` and `$ (k \times v ) $` as column matrices, then represent the cross product as a matrix product
 <div class="ulist">
    <p>
         `$\begin{bmatrix}
@@ -1256,11 +1265,6 @@ With this we can epress the rotation matrix `$R$` as:
 This is the Rodrigues' formula in matrix form. Is the rotation matrix through an angle `$\beta$` about the axis `$k$` where `$I$` is the 3×3 identity matrix.
 
 
-
-V:
-
-## Rodrigues' rotation formula
-### Geometric Interpretation
 
 V:
 
