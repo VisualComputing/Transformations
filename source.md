@@ -1221,12 +1221,13 @@ V:
 
 ## Affine transformations: Rotation
 ### Rodrigues' rotation formula
-Is an efficient algorithm for rotating a vector in space, given an angle of rotation `$\beta$a`, a vector `$ v $` in `$R^3$` and `$ k $` a unit vector describing the axis of rotation we have:  `$v_{rot} = v \cos \beta + (k \times v )\sin \beta  + k(k \cdot v) (1 - \cos  \beta) $`
+Is an efficient algorithm for rotating a vector in space, given an angle of rotation `$\beta$`, a vector `$ v $` in `$R^3$` and `$ k $` a unit vector describing the axis of rotation we have:  `$v_{rot} = v \cos \beta + (k \times v )\sin \beta  + k(k \cdot v) (1 - \cos  \beta) $`
 
 We can compute a rotation matrix `$R \in SO(3)$`
 
 V:
 
+## Rodrigues' rotation formula
 Representing `$ v $` and `$ (k \times v ) $` as column matrices, then represent the cross product as a matrix product
 <div class="ulist">
    <p>
@@ -1258,14 +1259,21 @@ Representing `$ v $` and `$ (k \times v ) $` as column matrices, then represent 
 
 V:
 
-With this we can epress the rotation matrix `$R$` as:
+## Rodrigues' rotation formula
+With this we can express the rotation matrix `$R$` as:
 
 `$R = I + \sin(\beta)K + (1-\cos \beta)K^2$`
 
 This is the Rodrigues' formula in matrix form. Is the rotation matrix through an angle `$\beta$` about the axis `$k$` where `$I$` is the 3×3 identity matrix.
 
-
-
+V:
+## Rodrigues' rotation formula
+<div class="ulist">
+    <img src="fig/rod1.png" alt="z-axis rotation" width="28%" >
+<p>
+   Taken from [Dunn and Parberry](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf)
+</p>
+</div>
 V:
 
 ## Affine transformations: Rotation
