@@ -1143,6 +1143,70 @@ V:
 
 ## Affine transformations: Rotation
 ### [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
+Is an efficient algorithm for rotating a vector in space, given:
+
+* An angle of rotation `$\theta$`
+* A vector `$v$` in `$R^3$`
+* A unit vector `$n$` in `$R^3$` describing the axis of rotation
+
+The algorithm will search for a matrix that describes
+
+`$v * R(n, \theta) = v'$`
+
+V:
+
+## Affine transformations: Rotation
+### Rodrigues' rotation formula
+
+<div class="ulist">
+    <img src="fig/rodrigues.png" alt="Rodrigues rotation" width="30%" style="float: left">
+    <ul style="width: 65%;">
+        <p class="fragment" data-fragment-index="1">
+        	`$v = v_\parallel + v_\bot$`
+        </p>
+        <p class="fragment" data-fragment-index="2">
+        	`$v' = v_\parallel + v'_\bot$`
+        </p>
+        <p class="fragment" data-fragment-index="3">
+        	`$v_\parallel = (v \cdot n) * n$`
+        </p>
+        <p class="fragment" data-fragment-index="4">
+        	`$v_\bot = v - v_\parallel$`
+        </p>
+        <p class="fragment" data-fragment-index="5">
+        	`$w = n \times v_\bot$`
+        </p>
+        <p class="fragment" data-fragment-index="6">
+        	`$v_\bot = v - (v \cdot n) * n$`
+        </p>
+        <p class="fragment" data-fragment-index="7">
+        	`$w = n \times v$`
+        </p>
+    </ul>
+</div>
+
+V:
+
+## Affine transformations: Rotation
+### Rodrigues' rotation formula
+
+<div class="ulist">
+    <img src="fig/rodrigues.png" alt="Rodrigues rotation" width="30%" style="float: left">
+    <ul style="width: 65%;">
+        <p class="fragment" data-fragment-index="1">
+            `$v_\bot = v - (v \cdot n) * n$`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+            `$w = n \times v$`
+        </p>
+        <p class="fragment" data-fragment-index="2">
+        	`$v'_\bot = v_\bot \, cos(\theta) + w \, sin(\theta)$`
+        </p>
+        <p class="fragment" data-fragment-index="3">
+        	`$v'_\bot = v - (v \cdot n) * n \, cos(\theta) + n \times v \, sin(\theta)$`
+        </p>
+    </ul>
+</div>
 
 V:
 
