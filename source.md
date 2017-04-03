@@ -1139,6 +1139,86 @@ V:
 ## Affine transformations: Rotation
 ### Orthogonal matrix
 
+<div class="ulist">
+
+A matrix is orthogonal if and only if the product of the matrix and its transpose is the identity.
+<p>
+      `$MM^{T} = I$`
+</p>
+
+This is equivalent to,
+<p>
+      `$M^{-1} = M^{T} $`
+</p>
+</div>
+
+V:
+
+## Orthogonal matrix
+### Geometric Interpretation
+
+Assume M is a
+      `$3\times 3$`  matrix, then
+
+
+<div class="ulist">
+   <p>
+        `$\begin{bmatrix}
+        m_{11} & m_{12} & m_{13} \cr
+        m_{21} & m_{22} & m_{33} \cr
+        m_{31} & m_{32} & m_{33} \cr
+      \end{bmatrix}
+       \bullet \begin{bmatrix}
+        m_{11} & m_{21} & m_{31} \cr
+        m_{12} & m_{22} & m_{32} \cr
+        m_{13} & m_{23} & m_{33} \cr
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        1 & 0 & 0 \cr
+        0 & 1 & 0 \cr
+        0 & 0 & 1 \cr
+        \end{bmatrix}
+        $`
+   </p>
+
+</div>
+
+V:
+
+## Orthogonal matrix
+### Geometric Interpretation
+
+Let,
+<div class="ulist">
+<p>
+      `$r_{1} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix}$`
+</p><p>
+      `$r_{2} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix}$`
+</p><p>
+      `$r_{3} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix}$`
+</p>
+</div>
+Then we must have that,
+<div class="ulist">
+<p>
+      `$r_{1} \cdot r_{1} = r_{2} \cdot r_{2} = r_{3} \cdot r_{3} = 1 $`  
+</p>
+<p>
+      `$r_{i} \cdot r_{j} = 0\ \ i=1,2,3 \ \ j=1,2,3 \ \ i\ne j$`  
+</p>
+</div>
+
+V:
+
+## Orthogonal matrix
+### Geometric Interpretation
+
+We can conclude that,
+* Each row of the matrix must be a unit vector.
+* The rows of the matrix must be mutually perpendicular.
+* Vectors  `$r_{1}, \,r_{2}, \,r_{3}$` are orthonormals.
+
 V:
 
 ## Affine transformations: Rotation
