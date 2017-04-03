@@ -1283,9 +1283,30 @@ V:
         	`$v'_\bot = v_\bot \, cos(\theta) + w \, sin(\theta)$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        	`$v'_\bot = v - (v \cdot n) * n \, cos(\theta) + n \times v \, sin(\theta)$`
+        	`$v' = v - (v \cdot n) * n \, cos(\theta) + n \times v \, sin(\theta)$`
         </p>
     </ul>
+</div>
+
+V:
+
+## Affine transformations: Rotation
+### Rodrigues' rotation formula
+
+Based on the fact that the rotation is an orthogonal matrix and that the base vectors are orthonormals, in order to get the rotation matrix it's just necessary to replace each value into the formula `$v' = v - (v \cdot n) * n \, cos(\theta) + n \times v \, sin(\theta)$`.
+
+<div class="ulist">
+   <p>
+        `$R(n, \theta)
+        =
+        \begin{bmatrix}
+        n_x^2(1-cos(\theta))+cos(\theta) & n_xn_y(1-cos(\theta))+n_zsin(\theta) & n_xn_z(1-cos(\theta))-n_ysin(\theta) \cr
+        n_xn_y(1-cos(\theta))-n_zsin(\theta) & n_y^2(1-cos(\theta))+cos(\theta) & n_yn_z(1-cos(\theta))+n_xsin(\theta) \cr
+        n_xn_z(1-cos(\theta))+n_ysin(\theta) & n_yn_z(1-cos(\theta))-n_xsin(\theta) & n_z^2(1-cos(\theta))+cos(\theta) \cr
+        \end{bmatrix}
+        $`
+   </p>
+
 </div>
 
 V:
