@@ -2145,6 +2145,8 @@ H:
 * [Processing 2d transformations tutorial](https://www.processing.org/tutorials/transform2d/)
 * [Processing shaders tutorial](https://www.processing.org/tutorials/pshader/)
 * [Shader Programming for Computational Arts and Design - A Comparison between Creative Coding Frameworks](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=ysaclbloDHk=&t=1)
+* [OpenGL projection matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html)
+* [The Perspective and Orthographic Projection Matrix](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix)
 
 H:
 
