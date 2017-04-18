@@ -26,6 +26,6 @@ void main() {
   gl_Position = unalMatrix * vertex;
   
   // tomamos el color del vertice y lo asociamos a la varying para que la
-  // informacion se interpole en el siguiente estadio (fragment shader)
+  // informacion se interpole en el siguiente estado (fragment shader)
   unalVertColor = color;
 }
