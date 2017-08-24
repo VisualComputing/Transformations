@@ -44,7 +44,7 @@ V:
 
  4. Modelling and view<!-- .element: class="fragment" data-fragment-index="4"-->
  5. Projections<!-- .element: class="fragment" data-fragment-index="5"-->
-    * Orthogonal
+    * Orthographic
     * Perspective
 
 H:
@@ -837,7 +837,7 @@ In general: $(x,y,z,w) \rightarrow (x/w,y/w,z/w)$
 
 V:
 
-## Affine transformations:Translation
+## Affine transformations: Translation
 
 <div class="ulist">
     <img src="fig/image4.JPG" alt="2d translation" width="38%" style="float: left">
@@ -849,13 +849,13 @@ V:
         `$y'=y + dy$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p class="fragment" data-fragment-index="4">
         `$\begin{bmatrix}
         x' \cr
         y' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -865,7 +865,7 @@ V:
         \end{bmatrix} \bullet \begin{bmatrix}
         x \cr
         y \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -877,7 +877,7 @@ V:
 
 V:
 
-## Affine transformations:Translation
+## Affine transformations: Translation
 
 <div class="ulist">
     <img src="fig/image15.JPG" alt="3d translation" width="38%" style="float: left">
@@ -892,11 +892,14 @@ V:
         `$z'=z + dz$`
         </p>
         <p class="fragment" data-fragment-index="4">
+        `$w'=w=1$`
+        </p>
+        <p class="fragment" data-fragment-index="5">
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -908,11 +911,11 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
-        <p class="fragment" data-fragment-index="5">
+        <p class="fragment" data-fragment-index="6">
         $P'= T(dx,dy,dz) \bullet P$
         </p>
     </ul>
@@ -935,14 +938,14 @@ V:
         `$z'=z$`
         </p>
         <p>
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p>
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -954,7 +957,7 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -981,14 +984,14 @@ V:
         `$z'= sz*z$`
         </p>
         <p>
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p>
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -1000,7 +1003,7 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -1023,14 +1026,14 @@ V:
         $z' = z$
         </p>
         <p>
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p>
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -1042,7 +1045,7 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -1064,14 +1067,14 @@ V:
         $x' = x$
         </p>
         <p>
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p>
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -1083,7 +1086,7 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -1105,14 +1108,14 @@ V:
         $y' = y$
         </p>
         <p>
-        `$w=1$`
+        `$w'=w=1$`
         </p>
         <p>
         `$\begin{bmatrix}
         x' \cr
         y' \cr
         z' \cr
-        w \cr
+        w' \cr
         \end{bmatrix}
         =
         \begin{bmatrix}
@@ -1124,7 +1127,7 @@ V:
         x \cr
         y \cr
         z \cr
-        1 \cr
+        w \cr
         \end{bmatrix}
         $`
         </p>
@@ -2010,11 +2013,415 @@ V:
 
 H:
 
-## Projections: Orthogonal
+## Projections: Orthographic
+### View volume: Eye and Clip spaces
+
+<figure>
+    <img height='400' src='fig/pimage6.png' />
+    <figcaption>[Orthographic Volume and Normalized Device Coordinates (NDC)](http://www.songho.ca/opengl/gl_projectionmatrix.html#ortho)</figcaption>
+</figure>
+
+Let $P_e$ be a point in *eye* space and $P_c$ a point in clip space, we seek:
+
+$$P_e = [x_e,y_e,z_e]\xrightarrow{\text{map}}P_c = [x_c,y_c,z_c]$$<!-- .element: class="fragment" data-fragment-index="1"-->
+
+$$x_e \in [l,r] \rightarrow x_c \in [-1,1], y_e \in [b,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$<!-- .element: class="fragment" data-fragment-index="2"-->
+
+V:
+
+## Projections: Orthographic
+### View volume: [Re-mapping a variable among ranges (general case)](http://stackoverflow.com/questions/929103/convert-a-number-range-to-another-range-maintaining-ratio)
+
+                |---------------*---------|          ->           |-------------------*--------------|
+               min              u        max                     min'                 u'            max'
+    
+The linear conversion is given by:
+
+`$$u' = min'+(u-min)(\Delta u')/(\Delta u)$$`
+
+where `$\Delta u=max-min$`, and `$\Delta u'=max'-min'$`
+
+which may be re-written as:<!-- .element: class="fragment" data-fragment-index="1"-->
+
+`$$u' = uS_u + T_u$$`<!-- .element: class="fragment" data-fragment-index="2"-->
+`$$S_u=\Delta u'/\Delta u$$`<!-- .element: class="fragment" data-fragment-index="3"-->
+`$$T_u=(min'\Delta u - min\Delta u')/\Delta u$$`<!-- .element: class="fragment" data-fragment-index="4"-->
+
+V:
+
+## Projections: Orthographic
+### View volume: Re-mapping a variable among ranges (our case)
+
+                |---------------*---------|          ->           |-------------------*--------------|
+               min              u        max                     -1                   u'             1
+
+`$$u' = uS_u + T_u$$`
+`$$S_u=2/(max-min)$$`
+`$$T_u=-(max+min)/(max-min)$$`
+
+V:
+
+## Projections: Orthographic
+### Matrix form: formulation
+
+<blockquote>
+`$$u' = uS_u + T_u$$`
+</blockquote>
+
+<p class="fragment" data-fragment-index="1">
+$$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
+$$x_e \in [l,r] \rightarrow x_c \in [-1,1], y_e \in [b,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
+</p>
+        
+<p class="fragment" data-fragment-index="2">
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+S_{x_e} & 0       & 0       & T_{x_e} \cr
+0       & S_{y_e} & 0       & T_{y_e} \cr
+0       & 0       & S_{z_e} & T_{z_e} \cr
+0       & 0       & 0       & 1  \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+</p>
+<p class="fragment" data-fragment-index="3">
+`$P_c = Ortho(S_{x_e/y_e/z_e},T_{x_e/y_e/z_e}) \bullet P_e$`
+</p>
+
+V:
+
+## Projections: Orthographic
+### Matrix form: solution
+
+<blockquote>
+`$$u' = uS_u + T_u$$`
+`$$S_u=2/(max-min)$$`
+`$$T_u=-(max+min)/(max-min)$$`
+</blockquote>
+
+<p class="fragment" data-fragment-index="1">
+$$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
+$$x_e \in [l,r] \rightarrow x_c \in [-1,1], y_e \in [b,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
+</p>
+        
+<p class="fragment" data-fragment-index="2">
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+2 \above 1pt (r-l) & 0                    & 0                   & -(r+l) \above 1pt (r-l) \cr
+0                  & 2 \above 1pt (t-b) & 0                     & -(t+b) \above 1pt (t-b) \cr
+0                  & 0                    & -2 \above 1pt (f-n) & -(f+n) \above 1pt (f-n) \cr
+0                  & 0                    & 0                   & 1  \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+</p>
+<p class="fragment" data-fragment-index="3">
+`$P_c = Ortho(l,r,b,t,n,f) \bullet P_e$`
+</p>
+
+V:
+
+## Projections: Orthographic
+### Matrix form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
+
+<blockquote>
+`$$u' = uS_u + T_u$$`
+`$$S_u=2/(max-min)$$`
+`$$T_u=-(max+min)/(max-min)$$`
+</blockquote>
+
+$$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
+$$x_e \in [-r,r] \rightarrow x_c \in [-1,1], y_e \in [-t,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
+        
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+1 \above 1pt r & 0                    & 0                   & 0 \cr
+0              & 1 \above 1pt t       & 0                   & 0 \cr
+0              & 0                    & -2 \above 1pt (f-n) & -(f+n) \above 1pt (f-n) \cr
+0              & 0                    & 0                   & 1  \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+</p>
+<p class="fragment" data-fragment-index="2">
+`$P_c= Ortho(r,t,n,f) \bullet P_e$`
+</p>
 
 V:
 
 ## Projections: Perspective
+### View volume
+
+<figure>
+    <img height='400' src='fig/perspvolume.png' />
+    <figcaption>[Perspective Frustum and Normalized Device Coordinates (NDC)](http://www.songho.ca/opengl/gl_projectionmatrix.html#perspective)</figcaption>
+</figure>
+
+Let $P_e$ be a point in *eye* space and $P_n$ a point in NDC, we seek:
+
+$$P_e = [x_e,y_e,z_e,w_e(=1)]\xrightarrow{\text{map}}P_c = [x_c,y_c,z_c,w_c(\neq 1)]$$<!-- .element: class="fragment" data-fragment-index="1"-->
+
+$$P_c = [x_c,y_c,z_c,w_c(\neq 1)]\xrightarrow[\text{divide}]{\text{perspective}}P_n = [x_n(=x_c/w_c),y_n(=y_c/w_c),z_n(=z_c/w_c),1]$$<!-- .element: class="fragment" data-fragment-index="2"-->
+
+V:
+
+## Projections: Perspective
+### Near plane projection of `$x_e,y_e \xrightarrow {\text{onto}} x_p,y_p$`
+
+<figure>
+    <img height='400' src='fig/proj_x.png' />
+    <figcaption>Top view of frustum</figcaption>
+</figure>
+
+`$${x_p\above 1pt x_e}= {-n\above 1pt z_e}$$`
+`$$x_p= {nx_e\above 1pt -z_e}$$`<!-- .element: class="fragment" data-fragment-index="2"-->
+
+V:
+
+## Projections: Perspective
+### Near plane projection of `$x_e,y_e \xrightarrow {\text{onto}} x_p,y_p$`
+
+<figure>
+    <img height='400' src='fig/proj_y.png' />
+    <figcaption>Side view of frustum</figcaption>
+</figure>
+
+`$${y_p\above 1pt y_e}= {-n\above 1pt z_e}$$`
+`$$y_p= {ny_e\above 1pt -z_e}$$`<!-- .element: class="fragment" data-fragment-index="2"-->
+
+V:
+
+## Projections: Perspective
+### Near plane projection of `$x_e,y_e \xrightarrow {\text{onto}} x_p,y_p$`
+
+<blockquote>
+`$$x_p= {nx_e\above 1pt -z_e},y_p= {ny_e\above 1pt -z_e}$$`
+</blockquote>
+
+which means<!-- .element: class="fragment" data-fragment-index="1"--> `${\color{red} {w_c}}=-z_e$`<!-- .element: class="fragment" data-fragment-index="1"-->
+
+`$$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+. & . & .  & . \cr
+. & . & .  & . \cr
+. & . & .  & . \cr
+0 & 0 & {\color{red} {-1}} & 0 \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$$`
+<!-- .element: class="fragment" data-fragment-index="2"-->
+
+V:
+
+## Projections: Perspective
+### `$x_e$,$y_e$` coordinate mapping (using our ortho matrix)
+
+<blockquote>
+`$${\color{green} {x_p}}= {nx_e\above 1pt -z_e},{\color{green} {y_p}}= {ny_e\above 1pt -z_e},w_c=-z_e$$`
+</blockquote>
+
+`$$\begin{bmatrix} 
+{\color{blue} {x_n}} \cr 
+{\color{blue} {y_n}} \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+2 \above 1pt (r-l) & 0                  & 0 & -(r+l) \above 1pt (r-l) \cr
+0                  & 2 \above 1pt (t-b) & 0 & -(t+b) \above 1pt (t-b) \cr
+. & . & .  & . \cr
+. & . & .  & . \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+{\color{green} {x_p}} \cr 
+{\color{green} {y_p}} \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$$`
+
+solving for <!-- .element: class="fragment" data-fragment-index="1"--> `${\color{blue} {x_n,y_n}}$` <!-- .element: class="fragment" data-fragment-index="1"--> we get:<!-- .element: class="fragment" data-fragment-index="1"-->
+`${\color{blue} {x_n}}= {2{\color{green} {x_p}}\above 1pt r-l}-{r+l\above 1pt r-l},{\color{blue} {y_n}} = {2{\color{green} {y_p}}\above 1pt t-b}-{t+b\above 1pt t-b}$`
+<!-- .element: class="fragment" data-fragment-index="2"-->
+
+since <!-- .element: class="fragment" data-fragment-index="3"-->
+`${\color{blue} {x_n}}={x_c\above 1pt w_c}$`<!-- .element: class="fragment" data-fragment-index="3"-->
+and <!-- .element: class="fragment" data-fragment-index="3"-->
+`${\color{blue} {y_n}}={y_c\above 1pt w_c}$`<!-- .element: class="fragment" data-fragment-index="3"-->
+, solving for <!-- .element: class="fragment" data-fragment-index="3"-->
+`${\color{red} {x_c,y_c}}$` <!-- .element: class="fragment" data-fragment-index="3"-->
+in terms of <!-- .element: class="fragment" data-fragment-index="3"-->
+`$x_e,y_e,z_e$` <!-- .element: class="fragment" data-fragment-index="3"-->
+, we get: <!-- .element: class="fragment" data-fragment-index="3"-->
+`${\color{red} {x_c}}= {2nx_e\above 1pt r-l}+{(r+l)z_e\above 1pt r-l},{\color{red} {y_c}}= {2ny_e\above 1pt t-b}+{(t+b)z_e\above 1pt t-b}$`<!-- .element: class="fragment" data-fragment-index="3"-->
+
+V:
+
+## Projections: Perspective
+### `$x_e$,$y_e$` coordinate mapping
+
+<blockquote>
+`$${\color{red} {x_c}}= {2nx_e\above 1pt r-l}+{(r+l)z_e\above 1pt r-l},{\color{red} {y_c}}= {2ny_e\above 1pt t-b}+{(t+b)z_e\above 1pt t-b},w_c=-z_e$$`
+</blockquote>
+
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+2n \above 1pt r-l   & 0                 & r+l \above 1pt r-l    & 0                   \cr
+0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
+.                   & .                 & .                     & .                   \cr
+0                   & 0                 & -1                    & 0                   \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+
+V:
+
+## Projections: Perspective
+### `$z_e$` coordinate mapping
+
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+2n \above 1pt r-l   & 0                 & r+l \above 1pt r-l    & 0                   \cr
+0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
+0                   & 0                 & {\color{green} A}     & {\color{green} B}   \cr
+0                   & 0                 & -1                    & 0                   \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+
+<p class="fragment" data-fragment-index="1">
+`$z_n=z_c/w_c={Az_e+Bw_e\above 1pt -z_e}={Az_e+B\above 1pt -z_e}$`
+</p>
+
+<p class="fragment" data-fragment-index="2">
+To find $A$ and $B$, use the map relation `$z_e \in [n,f] \rightarrow z_n \in [-1,1]$` and replace them above (twice)
+</p>
+
+V:
+
+## Projections: Perspective
+### `$z_e$` coordinate mapping
+
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+2n \above 1pt r-l & 0                   & r+l \above 1pt r-l    & 0                   \cr
+0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
+0                   & 0                 & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
+0                   & 0                 & -1                    & 0                   \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+<p class="fragment" data-fragment-index="1">
+`$P_c = Persp(l,r,b,t,n,f) \bullet P_e$`
+</p>
+
+V:
+
+## Projections: Perspective
+### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
+
+<blockquote>
+`$$l=-r$$`
+`$$b=-t$$`
+`$$aspectRatio=screenWidth/screenHeight$$`
+`$fovy:$` vertical field-of-view (in radians)
+</blockquote>
+
+<p class="fragment" data-fragment-index="1">
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+1 \above 1pt \tan (fovy/2)aspectRatio & 0                   & 0                     & 0                   \cr
+0                                     & \tan (fovy/2)       & 0                     & 0                   \cr
+0                                     & 0                   & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
+0                                     & 0                   & -1                    & 0                   \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+</p>
+
+<p class="fragment" data-fragment-index="2">
+`$P_c = Persp(fovy,aspectRatio,n,f) \bullet P_e$`
+</p>
 
 H:
 
@@ -2024,6 +2431,8 @@ H:
 * [Processing 2d transformations tutorial](https://www.processing.org/tutorials/transform2d/)
 * [Processing shaders tutorial](https://www.processing.org/tutorials/pshader/)
 * [Shader Programming for Computational Arts and Design - A Comparison between Creative Coding Frameworks](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=ysaclbloDHk=&t=1)
+* [OpenGL projection matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html)
+* [The Perspective and Orthographic Projection Matrix](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix)
 
 H:
 
