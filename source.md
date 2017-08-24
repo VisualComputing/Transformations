@@ -46,7 +46,7 @@ V:
  5. Projections<!-- .element: class="fragment" data-fragment-index="5"-->
     * Orthogonal
     * Perspective
- 
+
 H:
 
 ## Intro: Active vs pasive transformations
@@ -123,7 +123,7 @@ void main() {
 ```
 
 1. `transform = projection`
-  
+
 V:
 
 ## Intro: Shaders
@@ -405,7 +405,7 @@ Observation 1:<!-- .element: class="fragment" data-fragment-index="3"-->
 
 Observation 2:<!-- .element: class="fragment" data-fragment-index="4"-->
    Translation is a nonlinear transformation
-   
+
 V:
 
 ## Linear transformations: 2d scaling
@@ -420,16 +420,16 @@ V:
         `$y'= sy*y$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 \cr
         0 & sy \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -461,18 +461,18 @@ V:
         `$z'= sz*z$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 & 0 \cr
         0 & sy & 0 \cr
         0 & 0 & sz \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -520,16 +520,16 @@ V:
     <img src="fig/image7.png" alt="2d rotations" width="38%" style="float: left">
     <ul style="width: 57%;">        
         <p class="fragment" data-fragment-index="1">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta \cr
         sin\beta & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -552,18 +552,18 @@ V:
         $z' = z$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta & 0 \cr
         sin\beta & cos \beta & 0 \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -587,18 +587,18 @@ V:
         $x' = x$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 \cr
         0 & cos\beta & -sin \beta \cr
         0 & sin\beta & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -622,18 +622,18 @@ V:
         $y' = y$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & 0 & sin \beta \cr
         0 & 1 & 0 \cr
         -sin\beta & 0 & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -659,16 +659,16 @@ V:
         `$y'=y$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & h \cr
         0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -693,16 +693,16 @@ V:
         `$y'=y + h*x$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 \cr
         h & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -730,18 +730,18 @@ V:
         `$z'=z$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & a \cr
         0 & 1 & b \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -774,16 +774,16 @@ H:
         `$y'=y + dy$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         dx \cr
         dy \cr
-        \end{bmatrix} + \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} + \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -852,18 +852,18 @@ V:
         `$w=1$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & dx \cr
         0 & 1 & dy \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         1 \cr
         \end{bmatrix}
@@ -892,20 +892,20 @@ V:
         `$z'=z + dz$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 & dx \cr
         0 & 1 & 0 & dy \cr
         0 & 0 & 1 & dz \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -938,20 +938,20 @@ V:
         `$w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & a & 0 \cr
         0 & 1 & b & 0 \cr
         0 & 0 & 1 & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -984,20 +984,20 @@ V:
         `$w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 & 0 & 0 \cr
         0 & sy & 0 & 0 \cr
         0 & 0 & sz & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -1026,20 +1026,20 @@ V:
         `$w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta & 0 & 0 \cr
         sin\beta & cos \beta & 0 & 0 \cr
         0 & 0 & 1 & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -1067,20 +1067,20 @@ V:
         `$w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 & 0 \cr
         0 & cos\beta & -sin \beta & 0 \cr
         0 & sin\beta & cos \beta & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -1108,20 +1108,20 @@ V:
         `$w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & 0 & sin \beta & 0 \cr
         0 & 1 & 0 & 0 \cr
         -sin\beta & 0 & cos \beta & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         1 \cr
@@ -1308,6 +1308,8 @@ Based on the fact that the rotation is an orthogonal matrix and that the base ve
    </p>
 
 </div>
+
+We can compute a rotation matrix `$R \in SO(3)$`
 
 V:
 
@@ -1503,7 +1505,7 @@ Mnemonic 1:<!-- .element: class="fragment" data-fragment-index="8"-->
 
 Mnemonic 2:<!-- .element: class="fragment" data-fragment-index="9"-->
    The (left-to-right) $M_n,...M_2M_1$ transformation sequence is performed respect to a local (mutable) coordinate system
-   
+
 V:
 
 ## Affine transformations: Matrix operations
@@ -1546,22 +1548,22 @@ void draw() {
   background(0);
   // We do the rotation as: T(xr,yr)Rz(β)T(−xr,−yr)
   // 1. T(xr,yr)
-  applyMatrix(1, 0, 0, xr, 
-              0, 1, 0, yr, 
-              0, 0, 1, 0, 
+  applyMatrix(1, 0, 0, xr,
+              0, 1, 0, yr,
+              0, 0, 1, 0,
               0, 0, 0, 1);
   // 2. Rz(β)
-  applyMatrix(cos(beta), -sin(beta), 0, 0, 
-              sin(beta), cos(beta),  0, 0, 
-              0,         0,          1, 0, 
+  applyMatrix(cos(beta), -sin(beta), 0, 0,
+              sin(beta), cos(beta),  0, 0,
+              0,         0,          1, 0,
               0,         0,          0, 1);
   // 3. T(−xr,−yr)
-  applyMatrix(1, 0, 0, -xr, 
-              0, 1, 0, -yr, 
-              0, 0, 1, 0, 
+  applyMatrix(1, 0, 0, -xr,
+              0, 1, 0, -yr,
+              0, 0, 1, 0,
               0, 0, 0, 1);
   // drawing code follows
-} 
+}
 ```
 
 V:
@@ -1583,7 +1585,7 @@ void draw() {
   // 3. T(−xr,−yr)
   translate(-xr, -yr);
   // drawing code follows
-} 
+}
 ```
 
 Hence `translate()`, `rotate()`, applies the transformation to the current `modelview`
@@ -1602,7 +1604,7 @@ void setup() {
   // simple custom shader
   simpleShader = loadShader("simple_frag.glsl", "simple_vert.glsl");
   shader(simpleShader);
-} 
+}
 ```
 
 V:
@@ -1643,7 +1645,7 @@ void setup() {
   unalShader = loadShader("unal_frag.glsl", "unal_vert.glsl");
   shader(unalShader);
   modelview = new PMatrix3D();
-} 
+}
 ```
 
 V:
