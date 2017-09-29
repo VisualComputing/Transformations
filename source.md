@@ -36,7 +36,7 @@ H:
     * Homogeneous space
     * Translation
     * Scaling, rotation & shearing revisited
-    * Matrix operations: inversion, composition
+    * Matrix operations: orthogonality, inversion & composition
 
 V:
 
@@ -1139,35 +1139,55 @@ V:
 
 V:
 
-## Affine transformations: Rotation
-### Orthogonal matrix
+## Affine transformations: Matrix operations
+### Orthogonality
+
+A matrix `$$M = \begin{bmatrix}
+        m_{11} & m_{12} & m_{13} \cr
+        m_{21} & m_{22} & m_{33} \cr
+        m_{31} & m_{32} & m_{33} \cr
+\end{bmatrix}$$`
+
+is orthogonal _iff_:
+
+$$MM^{T} = I$$
+
+This is equivalent to: <!-- .element: class="fragment" data-fragment-index="1"-->
+
+$$M^{-1} = M^{T}$$ <!-- .element: class="fragment" data-fragment-index="1"-->
 
 V:
 
-## Affine transformations: Rotation
-### [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
+## Orthogonal matrix
+### Orthogonality: Geometric Interpretation
+
+Let
+
+`$$r_{1} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix}$$`
+`$$r_{2} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix}$$`
+`$$r_{3} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix}$$`
+
+then <!-- .element: class="fragment" data-fragment-index="1"-->
+
+`$$r_{1} \cdot r_{1} = r_{2} \cdot r_{2} = r_{3} \cdot r_{3} = 1 $$`<!-- .element: class="fragment" data-fragment-index="1"-->
+`$$r_{i} \cdot r_{j} = 0\ \ i=1,2,3 \ \ j=1,2,3 \ \ i\ne j$$`<!-- .element: class="fragment" data-fragment-index="1"-->
 
 V:
 
-## Affine transformations: Rotation
-### Euler angles Rodrigues' rotation relationship
+## Orthogonal matrix
+### Orthogonality: Geometric Interpretation
+
+We can conclude that:
+
+* Each row of the matrix must be a unit vector
+* The rows of the matrix must be mutually perpendicular
+* Vectors  `$r_{1}, \,r_{2}, \,r_{3}$` are _orthonormals_
+
+> Note that a rotation matrix is always orthogonal<!-- .element: class="fragment" data-fragment-index="1"-->
 
 N:
 
-thinking it'd make a lot more of sense to simply go:
-* Affine transformations: ...
-* Affine transformations: Rotation: Orthogonal matrix
-* Affine transformations: Rotation: Rodrigues
-* Affine transformations: Rotation: Euler angles
-* Affine transformations: Rotation: Euler angles Rodrigues' rotation relationship
-* Affine transformations: Rotation: Quaternions magic
-
-from next semester onwards :-P
-
-V:
-
-## Affine transformations: Rotation
-### Quaternions
+* Orthogonality is used in both: euler angles (composition) and rodrigues formula
 
 V:
 
@@ -1198,7 +1218,7 @@ V:
 | Translation    | $T(dx,dy,dz)$ |   $T(-dx,-dy,-dz)$  |
 | Shearing       |   $D_z(a,b)$  |     $D_z(-a,-b)$    |
 | Scaling        | $S(sx,sy,sz)$ | $S(1/sx,1/sy,1/sz)$ |
-| Rotation       |  $R_z(\beta)$ |    $R_z(-\beta)$    |
+| Rotation       |  $R_z(\beta)$ | $R_z(-\beta) (=R_z(\beta)^{T})$ |
 
 V:
 
@@ -1222,21 +1242,39 @@ Mnemonic 1:<!-- .element: class="fragment" data-fragment-index="8"-->
 
 Mnemonic 2:<!-- .element: class="fragment" data-fragment-index="9"-->
    The (left-to-right) $M_n,...M_2M_1$ transformation sequence is performed respect to a local (mutable) coordinate system
-   
+
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Scaling respect to $(x_f,y_f)$
 
 <figure>
-    <img height="400" src="fig/image10.JPG">
-    <figcaption>Rotation respect to pivot $(x_r,y_r)$, angle = $\beta$</figcaption>
+    <img height="400" src="fig/image12.JPG">
 </figure>
 
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Scaling respect to $(x_f,y_f)$
+
+<figure>
+    <img height="400" src="fig/image13.JPG">
+    <figcaption>$T(x_f,y_f)S(sx,sy)T(-x_f,-y_f)P$</figcaption>
+</figure>
+
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
+
+<figure>
+    <img height="400" src="fig/image10.JPG">
+</figure>
+
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 
 <figure>
     <img height="400" src="fig/image11.png">
@@ -1246,7 +1284,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation
 
 <div id='rotation_id'></div>
@@ -1254,7 +1292,7 @@ $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [default shader](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationDefaultShader/RotationDefaultShader.pde) (`applyMatrix()`)
 
 ```processing
@@ -1286,7 +1324,7 @@ void draw() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [default shader](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationDefaultShader/RotationDefaultShader.pde) (`translation()` and `rotation()`)
 
 ```processing
@@ -1310,7 +1348,7 @@ Hence `translate()`, `rotate()`, applies the transformation to the current `mode
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [simple shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationSimpleShader)
 
 ```processing
@@ -1327,7 +1365,7 @@ void setup() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [simple shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationSimpleShader)
 
 [simple_vert.glsl](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationSimpleShader/data/simple_vert.glsl):
@@ -1349,7 +1387,7 @@ Since here we use the default uniforms (`transform`) and attributes (`vertex`, `
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
 
 ```processing
@@ -1368,7 +1406,7 @@ void setup() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
 
 ```processing
@@ -1402,7 +1440,7 @@ void emitUniforms() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
 
 [unal_vert.glsl](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationUnalShader/data/unal_vert.glsl):
@@ -1425,22 +1463,113 @@ void main() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+
+<div class="ulist">
+    <img src="fig/rotation_overview.png" alt="3d rotation" width="40%" style="float: left">
+    <ul style="width: 50%;">
+        <p>
+        let $v = p_2 - p_1$
+        </p>
+        <p>
+        $u = v / |v| = (a, b, c)$
+        </p>
+        <p>
+        $a = (x_2 - x_1) / |v|$
+        </p>
+        <p>
+        $b = (y_2 - y_1) / |v|$
+        </p>
+        <p>
+        $c = (z_2 - z_1) / |v|$
+        </p>
+    </ul>
+</div>
+
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
 
 <figure>
-    <img height="400" src="fig/image12.JPG">
-    <figcaption>Scaling respect to reference point $(x_f,y_f)$</figcaption>
+    <img height="550" src="fig/rotation.png">
+    <figcaption>`$T(x_1,y_1,z_1) * R_x(-\alpha) * R_y(-\lambda) * R_z(\beta) * R_y(\lambda)  * R_x(\alpha) * T(-x_1,-y_1,-z_1)$`</figcaption>
 </figure>
 
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+#### Step 2
 
-<figure>
-    <img height="400" src="fig/image13.JPG">
-    <figcaption>$T(x_f,y_f)S(sx,sy)T(-x_f,-y_f)P$</figcaption>
-</figure>
+<div class="ulist">
+    <img src="fig/step2.png" alt="3d rotation: step 2" width="40%" style="float: left">
+    <ul style="width: 50%;">
+        <p>
+        $u = (a, b, c)$
+        </p>
+        <p>
+        $u'= (0,b,c)$
+        </p>
+        <p>
+        $\cos \alpha = (u' \bullet u_z) / ( |u'| |u_z| )$, note that $|u_z| = 1$
+        </p>
+        <p>
+        $\cos \alpha = c/d$, where $d = |u'| = \sqrt{(b^2 + c^2)}$
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        since $\cos ^ 2 \alpha + \sin ^ 2 \alpha = 1$
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        $\sin \alpha = b/d$
+        </p>
+    </ul>
+</div>
+
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+#### Step 3
+
+<div class="ulist">
+    <img src="fig/step3.png" alt="3d rotation: step 3" width="40%" style="float: left">
+    <ul style="width: 50%;">
+        <p>
+        $u = (a, b, c)$
+        </p>
+        <p>
+        $u'= (0,b,c)$
+        </p>
+        <p>
+        $u''=(a,0,d)$, $d = sqrt{(b^2+c^2)}$
+        </p>
+        <p>
+        $\cos \lambda = (u'' \bullet u_z) / ( |u''| |u_z| )$
+        </p>
+        <p>
+        since $|u''|=|u_z|=1$
+        </p>
+        <p>
+        $\cos \lambda = d$
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        since $\cos ^ 2 \lambda + \sin ^ 2 \lambda = 1$ and $|u| = 1$
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        $\sin \lambda = a$, note that the actual angle we need is $-\lambda$
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        $\sin -\lambda = -a$ (unlike $\cos$, $\sin$ is an odd function)
+        </p>
+    </ul>
+</div>
+
+N:
+
+missing:
+* Affine transformations: Rotation: Quaternions magic
+* Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
 
 H:
 
