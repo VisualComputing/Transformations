@@ -1568,8 +1568,9 @@ V:
 N:
 
 missing:
-* Affine transformations: Rotation: Quaternions magic
-* Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
+1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda)  * R_x(\alpha)
+2. Affine transformations: Rotation: Quaternions magic
+3. Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
 
 H:
 
