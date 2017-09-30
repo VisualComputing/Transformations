@@ -1183,7 +1183,9 @@ We can conclude that:
 * The rows of the matrix must be mutually perpendicular
 * Vectors  `$r_{1}, \,r_{2}, \,r_{3}$` are _orthonormals_
 
-> Note that a rotation matrix is always orthogonal<!-- .element: class="fragment" data-fragment-index="1"-->
+> Note 1: that $r_1$, $r_2$ and $r_3$ form a non-canonical basis<!-- .element: class="fragment" data-fragment-index="1"-->
+
+> Note 2: that a rotation matrix is always orthogonal<!-- .element: class="fragment" data-fragment-index="2"-->
 
 N:
 
@@ -1565,10 +1567,58 @@ V:
     </ul>
 </div>
 
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
+
+<figure>
+    <img height="550" src="fig/rxry_overview.png">
+    <figcaption>Suppose $u$ is part of a non-canonical basis $x', y', z'$</figcaption>
+</figure>
+
+V:
+
+## Affine transformations: Matrix operations
+### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
+
+<div class="ulist">
+    <img src="fig/rxry.png" alt="3d rotation: rx-ry" width="40%" style="float: left">
+    <ul style="width: 50%;">
+        <p>
+        `$
+        R_y(\lambda) * R_x(\alpha)
+        = 
+        \begin{bmatrix}
+        u_{x'1} & u_{x'2} & u_{x'3} & 0 \cr
+        u_{y'1} & u_{y'2} & u_{y'3} & 0 \cr
+        u_{z'1} & u_{z'2} & u_{z'3} & 0 \cr
+        0 & 0 & 0 & 1 \cr
+        \end{bmatrix}
+        $`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        where
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{z'}=u$`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{x'}$` is _any_ orthogonal vector to `$u_{z'}$`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{y'} = u \times u_{x'}$`
+        </p>
+        
+    </ul>
+</div>
+
 N:
 
 missing:
-1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda)  * R_x(\alpha)
+1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda) * R_x(\alpha)
 2. Affine transformations: Rotation: Quaternions magic
 3. Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
 
