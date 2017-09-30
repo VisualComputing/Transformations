@@ -144,7 +144,7 @@ void main() {
 1. `transform = projection * modelview`
 2. `transform = projection * view * model`
 
-(<a href="#/5/15">goto matrix composition</a> and then to <a href="#/6/12">eye transform</a>)
+(<a href="#/5/16">goto matrix composition</a> and then to <a href="#/6/12">eye transform</a>)
 
 V:
 
