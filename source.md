@@ -674,7 +674,7 @@ V:
         $`
         </p>
         <p class="fragment" data-fragment-index="4">
-        $P'= D_x(h) \bullet P$
+        $P'= D_y(h) \bullet P$
         </p>
     </ul>
 </div>
@@ -708,7 +708,7 @@ V:
         $`
         </p>
         <p class="fragment" data-fragment-index="4">
-        $P'= D_y(h) \bullet P$
+        $P'= D_x(h) \bullet P$
         </p>
     </ul>
 </div>
