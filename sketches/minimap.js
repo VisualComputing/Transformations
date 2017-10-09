@@ -75,8 +75,11 @@ var sketch = function( p ) {
     };
     
     p.mouseMoved = function () {
-        eyePosition.x = p.mouseX;
-        eyePosition.y = p.mouseY;
+        //eyePosition.x = p.mouseX;
+        //eyePosition.y = p.mouseY;
+        //TODO Hack to make it work with p5.js 0.5.14
+        eyePosition.x = p.mouseX/2;
+        eyePosition.y = p.mouseY/2;
         //return false;
     }
     
@@ -90,7 +93,7 @@ var sketch = function( p ) {
     }
     
     p.mouseWheel = function (event) {
-        eyeOrientation += event.delta;
+        eyeOrientation += event.delta/10;
         //uncomment to block page scrolling
         //return false;
     }
@@ -195,4 +198,4 @@ var sketch = function( p ) {
     };
 };
 
-var p5_mm = new p5(sketch, 'minimap_id');
+new p5(sketch, 'minimap_id');
