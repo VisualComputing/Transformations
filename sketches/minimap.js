@@ -75,11 +75,8 @@ var sketch = function( p ) {
     };
     
     p.mouseMoved = function () {
-        //eyePosition.x = p.mouseX;
-        //eyePosition.y = p.mouseY;
-        //TODO Hack to make it work with p5.js 0.5.14
-        eyePosition.x = p.mouseX/2;
-        eyePosition.y = p.mouseY/2;
+        eyePosition.x = p.mouseX;
+        eyePosition.y = p.mouseY;
         //return false;
     }
     
