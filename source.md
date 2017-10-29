@@ -46,7 +46,7 @@ V:
  5. Projections<!-- .element: class="fragment" data-fragment-index="5"-->
     * Orthographic
     * Perspective
- 
+
 H:
 
 ## Intro: Active vs pasive transformations
@@ -123,7 +123,7 @@ void main() {
 ```
 
 1. `transform = projection`
-  
+
 V:
 
 ## Intro: Shaders
@@ -405,7 +405,7 @@ Observation 1:<!-- .element: class="fragment" data-fragment-index="3"-->
 
 Observation 2:<!-- .element: class="fragment" data-fragment-index="4"-->
    Translation is a nonlinear transformation
-   
+
 V:
 
 ## Linear transformations: 2d scaling
@@ -420,16 +420,16 @@ V:
         `$y'= sy*y$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 \cr
         0 & sy \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -461,18 +461,18 @@ V:
         `$z'= sz*z$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 & 0 \cr
         0 & sy & 0 \cr
         0 & 0 & sz \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -520,16 +520,16 @@ V:
     <img src="fig/image7.png" alt="2d rotations" width="38%" style="float: left">
     <ul style="width: 57%;">        
         <p class="fragment" data-fragment-index="1">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta \cr
         sin\beta & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -552,18 +552,18 @@ V:
         $z' = z$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta & 0 \cr
         sin\beta & cos \beta & 0 \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -587,18 +587,18 @@ V:
         $x' = x$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 \cr
         0 & cos\beta & -sin \beta \cr
         0 & sin\beta & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -622,18 +622,18 @@ V:
         $y' = y$
         </p>
         <p class="fragment" data-fragment-index="2">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & 0 & sin \beta \cr
         0 & 1 & 0 \cr
         -sin\beta & 0 & cos \beta \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -659,16 +659,16 @@ V:
         `$y'=y$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & h \cr
         0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -693,16 +693,16 @@ V:
         `$y'=y + h*x$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 \cr
         h & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -730,18 +730,18 @@ V:
         `$z'=z$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & a \cr
         0 & 1 & b \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         \end{bmatrix}
@@ -774,16 +774,16 @@ H:
         `$y'=y + dy$`
         </p>
         <p class="fragment" data-fragment-index="3">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         dx \cr
         dy \cr
-        \end{bmatrix} + \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} + \begin{bmatrix}
+        x \cr
         y \cr
         \end{bmatrix}
         $`
@@ -852,18 +852,18 @@ V:
         `$w'=w=1$`
         </p>
         <p class="fragment" data-fragment-index="4">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & dx \cr
         0 & 1 & dy \cr
         0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         w \cr
         \end{bmatrix}
@@ -895,20 +895,20 @@ V:
         `$w'=w=1$`
         </p>
         <p class="fragment" data-fragment-index="5">
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 & dx \cr
         0 & 1 & 0 & dy \cr
         0 & 0 & 1 & dz \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -941,20 +941,20 @@ V:
         `$w'=w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & a & 0 \cr
         0 & 1 & b & 0 \cr
         0 & 0 & 1 & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -965,6 +965,14 @@ V:
         $P'= D_z(a,b) \bullet P$
         </p>
     </ul>
+</div>
+
+V:
+
+## Affine transformations: Shearing (r)
+### Example : P5.js implementation
+<div class="ulist">
+		<div id='shearing_cube_id'></div>
 </div>
 
 V:
@@ -987,20 +995,20 @@ V:
         `$w'=w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         sx & 0 & 0 & 0 \cr
         0 & sy & 0 & 0 \cr
         0 & 0 & sz & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -1029,20 +1037,20 @@ V:
         `$w'=w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & -sin \beta & 0 & 0 \cr
         sin\beta & cos \beta & 0 & 0 \cr
         0 & 0 & 1 & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -1070,20 +1078,20 @@ V:
         `$w'=w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         1 & 0 & 0 & 0 \cr
         0 & cos\beta & -sin \beta & 0 \cr
         0 & sin\beta & cos \beta & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -1111,20 +1119,20 @@ V:
         `$w'=w=1$`
         </p>
         <p>
-        `$\begin{bmatrix} 
-        x' \cr 
+        `$\begin{bmatrix}
+        x' \cr
         y' \cr
         z' \cr
         w' \cr
         \end{bmatrix}
-        = 
+        =
         \begin{bmatrix}
         cos\beta & 0 & sin \beta & 0 \cr
         0 & 1 & 0 & 0 \cr
         -sin\beta & 0 & cos \beta & 0 \cr
         0 & 0 & 0 & 1 \cr
-        \end{bmatrix} \bullet \begin{bmatrix} 
-        x \cr 
+        \end{bmatrix} \bullet \begin{bmatrix}
+        x \cr
         y \cr
         z \cr
         w \cr
@@ -1305,22 +1313,22 @@ void draw() {
   background(0);
   // We do the rotation as: T(xr,yr)Rz(β)T(−xr,−yr)
   // 1. T(xr,yr)
-  applyMatrix(1, 0, 0, xr, 
-              0, 1, 0, yr, 
-              0, 0, 1, 0, 
+  applyMatrix(1, 0, 0, xr,
+              0, 1, 0, yr,
+              0, 0, 1, 0,
               0, 0, 0, 1);
   // 2. Rz(β)
-  applyMatrix(cos(beta), -sin(beta), 0, 0, 
-              sin(beta), cos(beta),  0, 0, 
-              0,         0,          1, 0, 
+  applyMatrix(cos(beta), -sin(beta), 0, 0,
+              sin(beta), cos(beta),  0, 0,
+              0,         0,          1, 0,
               0,         0,          0, 1);
   // 3. T(−xr,−yr)
-  applyMatrix(1, 0, 0, -xr, 
-              0, 1, 0, -yr, 
-              0, 0, 1, 0, 
+  applyMatrix(1, 0, 0, -xr,
+              0, 1, 0, -yr,
+              0, 0, 1, 0,
               0, 0, 0, 1);
   // drawing code follows
-} 
+}
 ```
 
 V:
@@ -1342,7 +1350,7 @@ void draw() {
   // 3. T(−xr,−yr)
   translate(-xr, -yr);
   // drawing code follows
-} 
+}
 ```
 
 Hence `translate()`, `rotate()`, applies the transformation to the current `modelview`
@@ -1361,7 +1369,7 @@ void setup() {
   // simple custom shader
   simpleShader = loadShader("simple_frag.glsl", "simple_vert.glsl");
   shader(simpleShader);
-} 
+}
 ```
 
 V:
@@ -1402,7 +1410,7 @@ void setup() {
   unalShader = loadShader("unal_frag.glsl", "unal_vert.glsl");
   shader(unalShader);
   modelview = new PMatrix3D();
-} 
+}
 ```
 
 V:
@@ -1590,7 +1598,7 @@ V:
         <p>
         `$
         R_y(\lambda) * R_x(\alpha)
-        = 
+        =
         \begin{bmatrix}
         u_{x'1} & u_{x'2} & u_{x'3} & 0 \cr
         u_{y'1} & u_{y'2} & u_{y'3} & 0 \cr
@@ -1611,7 +1619,7 @@ V:
         <p class="fragment" data-fragment-index="1">
         `$u_{y'} = u \times u_{x'}$`
         </p>
-        
+
     </ul>
 </div>
 
@@ -1928,7 +1936,7 @@ V:
 
                 |---------------*---------|          ->           |-------------------*--------------|
                min              u        max                     min'                 u'            max'
-    
+
 The linear conversion is given by:
 
 `$$u' = min'+(u-min)(\Delta u')/(\Delta u)$$`
@@ -1966,22 +1974,22 @@ V:
 $$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
 $$x_e \in [l,r] \rightarrow x_c \in [-1,1], y_e \in [b,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
 </p>
-        
+
 <p class="fragment" data-fragment-index="2">
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 S_{x_e} & 0       & 0       & T_{x_e} \cr
 0       & S_{y_e} & 0       & T_{y_e} \cr
 0       & 0       & S_{z_e} & T_{z_e} \cr
 0       & 0       & 0       & 1  \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2007,22 +2015,22 @@ V:
 $$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
 $$x_e \in [l,r] \rightarrow x_c \in [-1,1], y_e \in [b,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
 </p>
-        
+
 <p class="fragment" data-fragment-index="2">
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 2 \above 1pt (r-l) & 0                    & 0                   & -(r+l) \above 1pt (r-l) \cr
 0                  & 2 \above 1pt (t-b) & 0                     & -(t+b) \above 1pt (t-b) \cr
 0                  & 0                    & -2 \above 1pt (f-n) & -(f+n) \above 1pt (f-n) \cr
 0                  & 0                    & 0                   & 1  \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2046,21 +2054,21 @@ V:
 
 $$[x_e,y_e,z_e]\xrightarrow{\text{map}}[x_c,y_c,z_c]$$
 $$x_e \in [-r,r] \rightarrow x_c \in [-1,1], y_e \in [-t,t] \rightarrow y_c \in [-1,1], z_e \in [n,f] \rightarrow z_c \in [-1,1]$$
-        
-`$\begin{bmatrix} 
-x_c \cr 
+
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 1 \above 1pt r & 0                    & 0                   & 0 \cr
 0              & 1 \above 1pt t       & 0                   & 0 \cr
 0              & 0                    & -2 \above 1pt (f-n) & -(f+n) \above 1pt (f-n) \cr
 0              & 0                    & 0                   & 1  \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2124,20 +2132,20 @@ V:
 
 which means<!-- .element: class="fragment" data-fragment-index="1"--> `${\color{red} {w_c}}=-z_e$`<!-- .element: class="fragment" data-fragment-index="1"-->
 
-`$$\begin{bmatrix} 
-x_c \cr 
+`$$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 . & . & .  & . \cr
 . & . & .  & . \cr
 . & . & .  & . \cr
 0 & 0 & {\color{red} {-1}} & 0 \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2154,20 +2162,20 @@ V:
 `$${\color{green} {x_p}}= {nx_e\above 1pt -z_e},{\color{green} {y_p}}= {ny_e\above 1pt -z_e},w_c=-z_e$$`
 </blockquote>
 
-`$$\begin{bmatrix} 
-{\color{blue} {x_n}} \cr 
+`$$\begin{bmatrix}
+{\color{blue} {x_n}} \cr
 {\color{blue} {y_n}} \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 2 \above 1pt (r-l) & 0                  & 0 & -(r+l) \above 1pt (r-l) \cr
 0                  & 2 \above 1pt (t-b) & 0 & -(t+b) \above 1pt (t-b) \cr
 . & . & .  & . \cr
 . & . & .  & . \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-{\color{green} {x_p}} \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+{\color{green} {x_p}} \cr
 {\color{green} {y_p}} \cr
 z_e \cr
 w_e(=1) \cr
@@ -2198,20 +2206,20 @@ V:
 `$${\color{red} {x_c}}= {2nx_e\above 1pt r-l}+{(r+l)z_e\above 1pt r-l},{\color{red} {y_c}}= {2ny_e\above 1pt t-b}+{(t+b)z_e\above 1pt t-b},w_c=-z_e$$`
 </blockquote>
 
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 2n \above 1pt r-l   & 0                 & r+l \above 1pt r-l    & 0                   \cr
 0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
 .                   & .                 & .                     & .                   \cr
 0                   & 0                 & -1                    & 0                   \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2223,20 +2231,20 @@ V:
 ## Projections: Perspective
 ### `$z_e$` coordinate mapping
 
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 2n \above 1pt r-l   & 0                 & r+l \above 1pt r-l    & 0                   \cr
 0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
 0                   & 0                 & {\color{green} A}     & {\color{green} B}   \cr
 0                   & 0                 & -1                    & 0                   \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2256,20 +2264,20 @@ V:
 ## Projections: Perspective
 ### `$z_e$` coordinate mapping
 
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 2n \above 1pt r-l & 0                   & r+l \above 1pt r-l    & 0                   \cr
 0                   & 2n \above 1pt t-b & t+b \above 1pt t-b    & 0                   \cr
 0                   & 0                 & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
 0                   & 0                 & -1                    & 0                   \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
@@ -2292,20 +2300,20 @@ V:
 </blockquote>
 
 <p class="fragment" data-fragment-index="1">
-`$\begin{bmatrix} 
-x_c \cr 
+`$\begin{bmatrix}
+x_c \cr
 y_c \cr
 z_c \cr
 w_c \cr
 \end{bmatrix}
-= 
+=
 \begin{bmatrix}
 1 \above 1pt \tan (fovy/2)aspectRatio & 0                   & 0                     & 0                   \cr
 0                                     & \tan (fovy/2)       & 0                     & 0                   \cr
 0                                     & 0                   & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
 0                                     & 0                   & -1                    & 0                   \cr
-\end{bmatrix} \bullet \begin{bmatrix} 
-x_e \cr 
+\end{bmatrix} \bullet \begin{bmatrix}
+x_e \cr
 y_e \cr
 z_e \cr
 w_e(=1) \cr
