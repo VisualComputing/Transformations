@@ -1267,6 +1267,14 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
+### Mnemonic 1 examples: Scaling respect to $(x_r,y_r)$
+$T(x_f,y_f)S(sx,sy)T(-x_f,-y_f)$ Processing implementation
+
+<div id='scaling2d_id'></div>
+
+V:
+
+## Affine transformations: Matrix operations
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 
 <figure>
