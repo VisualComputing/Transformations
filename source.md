@@ -1470,7 +1470,7 @@ void main() {
 <li class="fragment"> Note the use of the custom uniform `unalMatrix` instead of the default `transform`
 <li class="fragment"> The [Shader Programming for Computational Arts and Design](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=ysaclbloDHk=&t=1) paper discusses API _simplicity_ and _flexibility_ in shader programming
 
-V:
+V: 
 
 ## Affine transformations: Matrix operations
 ### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
