@@ -1788,8 +1788,7 @@ V:
 
 ## Modelling and view: Frame notion
 
-> A frame is defined by an affine (composed) transform: `$M_i^*, 1 \leq i \leq 3$`
-read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
+> A frame is defined by an affine (composed) transform: `$M_i^*, 1 \leq i \leq 3$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
 
 V:
 
