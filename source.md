@@ -1790,7 +1790,7 @@ V:
 
 > A frame is defined by an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
 
-> Note that the `$T(x,y,z) * R_u(\beta) * S(\mu)$`, $\mu > 0$ frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
+> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, $s > 0$ frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
 
 V:
 
