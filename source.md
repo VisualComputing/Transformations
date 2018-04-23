@@ -1473,7 +1473,7 @@ void main() {
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 
 <div class="ulist">
     <img src="fig/rotation_overview.png" alt="3d rotation" width="40%" style="float: left">
@@ -1499,7 +1499,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 
 <figure>
     <img height="550" src="fig/rotation.png">
@@ -1509,7 +1509,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Step 2
 
 <div class="ulist">
@@ -1539,7 +1539,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Step 3
 
 <div class="ulist">
@@ -1578,7 +1578,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
 
 <figure>
@@ -1589,7 +1589,7 @@ V:
 V:
 
 ## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation respect to $u$, $\beta$
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
 
 <div class="ulist">
@@ -1788,7 +1788,9 @@ V:
 
 ## Modelling and view: Frame notion
 
-> A frame is defined by an affine (composed) transform: `$M_i^*, 1 \leq i \leq 3$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
+> A frame is defined by an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
+
+> Note that the `$T(x,y,z) * R_u(\beta) * S(\mu)$`, $\mu > 0$ frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
 
 V:
 
@@ -1911,6 +1913,193 @@ V:
 ### [View](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/scenegraph/MiniMap/MiniMap.pde) example
 
 <div id='minimap_id'></div>
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+
+```processing
+ World
+  ^
+  |\
+ f1 eye
+  ^
+  |\
+ f2  f3
+```
+
+```processing
+Scene scene;
+Frame f1, f2, f3, eye;
+void setup() {
+  scene = new Scene(this);
+  f1 = new Frame();
+  f2 = new Frame();
+  f2.setReference(f1);
+  f3 = new Frame();
+  f3.setReference(f1);
+  eye = new Frame();
+  scene.setEye(eye);
+}
+```
+
+Observations:
+<li class="fragment"> The scene gets automatically rendered respect to the `eye` frame
+<li class="fragment"> `setTranslation(Vector)`, `translate(Vector)`, `setRotation(Quaterion)`, `rotate(Quaterion)`, `setScaling(float)` and `scale(float)`, locally manipulates a frame instance
+<li class="fragment"> `setPosition(Vector)`, `setOrientation(Quaterion)`, and `setMagnitude(float)`, globally manipulates a frame instance
+<li class="fragment"> `location(Vector, Frame)` and `displacement(Vector, Frame)` transforms coordinates and vectors (resp.) from other frame instances
+<li class="fragment"> `setConstraint(Constrain)` applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a frame instance limiting its motion
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+
+```processing
+ World
+  ^
+  |\
+ f1 eye
+  ^
+  |\
+ f2  f3
+```
+
+```processing
+void draw() {
+  // enter f1
+  pushMatrix();
+  scene.applyTransformation(f1);
+  drawF1();
+  // enter f2
+  pushMatrix();
+  scene.applyTransformation(f1);
+  drawF2();
+  // "return" to f1
+  popMatrix();
+  // enter f3
+  pushMatrix();
+  scene.applyTransformation(f3);
+  drawF3();
+  // return to f1
+  popMatrix();
+  // return to World
+  popMatrix();
+}
+```
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [nodes](https://visualcomputing.github.io/frames-javadocs/frames/core/Node.html)
+
+```processing
+ World
+  ^
+  |\
+ n1 eye
+  ^
+  |\
+ n2  n3
+```
+
+```processing
+Scene scene;
+Node n1, n2, n3, eye;
+void setup() {
+  scene = new Scene(this);
+  n1 = new Node(scene);
+  n2 = new Node(n1);
+  n3 = new Node(n1);
+  eye = new Node(scene);
+  scene.setEye(eye);
+}
+```
+
+Observations:
+<li class="fragment"> Same as with frames
+<li class="fragment"> Nodes have [inverse kinematics](https://github.com/VisualComputing/framesjs/tree/processing/examples/ik) behavior
+<li class="fragment"> Nodes can be manipulated interactively by overriding `interact(Event)`
+<li class="fragment"> Nodes are picked using ray-tracing against a rectangular area around their projected `position() `
+<li class="fragment"> Nodes can be drawn by overriding `visit()`
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [nodes](https://visualcomputing.github.io/frames-javadocs/frames/core/Node.html)
+
+```processing
+ World
+  ^
+  |\
+ n1 eye
+  ^
+  |\
+ n2  n3
+```
+
+```processing
+void draw() {
+  // calls visit() on each node instance
+  scene.traverse();
+}
+```
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
+
+```processing
+ World
+  ^
+  |\
+ s1 eye
+  ^
+  |\
+ s2  s3
+```
+
+```processing
+Scene scene;
+Shape s1, s2, s3, eye;
+void setup() {
+  scene = new Scene(this);
+  s1 = new Shape(scene);
+  s2 = new Shape(s1);
+  s3 = new Shape(s1);
+  eye = new Shape(scene);
+  scene.setEye(eye);
+}
+```
+
+Observations:
+<li class="fragment"> Same as with nodes
+<li class="fragment"> Shapes are picked precisely using ray-tracing against the pixels of their projection
+<li class="fragment"> Call `set(PShape)` to bind a retained mode PShape to the shape
+<li class="fragment"> Override `set(PGraphics)` to bind an immediate mode rendering procedure to the shape
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
+
+```processing
+ World
+  ^
+  |\
+ s1 eye
+  ^
+  |\
+ s2  s3
+```
+
+```processing
+void draw() {
+  scene.traverse();
+}
+```
 
 H:
 
