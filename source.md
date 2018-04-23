@@ -1935,10 +1935,8 @@ Frame f1, f2, f3, eye;
 void setup() {
   scene = new Scene(this);
   f1 = new Frame();
-  f2 = new Frame();
-  f2.setReference(f1);
-  f3 = new Frame();
-  f3.setReference(f1);
+  f2 = new Frame(f1, 1);
+  f3 = new Frame(f1, 1);
   eye = new Frame();
   scene.setEye(eye);
 }
