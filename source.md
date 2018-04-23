@@ -1949,6 +1949,7 @@ Observations:
 <li class="fragment"> `setTranslation(Vector)`, `translate(Vector)`, `setRotation(Quaterion)`, `rotate(Quaterion)`, `setScaling(float)` and `scale(float)`, locally manipulates a frame instance
 <li class="fragment"> `setPosition(Vector)`, `setOrientation(Quaterion)`, and `setMagnitude(float)`, globally manipulates a frame instance
 <li class="fragment"> `location(Vector, Frame)` and `displacement(Vector, Frame)` transforms coordinates and vectors (resp.) from other frame instances
+<li class="fragment"> `worldLocation(Vector)` and `worldDisplacement(Vector)` transforms coordinates and vectors (resp.) to the world
 <li class="fragment"> `setConstraint(Constrain)` applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a frame instance limiting its motion
 
 V:
