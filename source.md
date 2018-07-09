@@ -1790,7 +1790,7 @@ V:
 
 > A frame is defined by an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
 
-> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, $s > 0$ frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
+> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, `$s > 0$` frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
 
 V:
 
@@ -1942,13 +1942,21 @@ void setup() {
 }
 ```
 
-Observations:
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+#### Advantages
+
 <li class="fragment"> The scene gets automatically rendered respect to the `eye` frame
-<li class="fragment"> `setTranslation(Vector)`, `translate(Vector)`, `setRotation(Quaterion)`, `rotate(Quaterion)`, `setScaling(float)` and `scale(float)`, locally manipulates a frame instance
-<li class="fragment"> `setPosition(Vector)`, `setOrientation(Quaterion)`, and `setMagnitude(float)`, globally manipulates a frame instance
-<li class="fragment"> `location(Vector, Frame)` and `displacement(Vector, Frame)` transforms coordinates and vectors (resp.) from other frame instances
-<li class="fragment"> `worldLocation(Vector)` and `worldDisplacement(Vector)` transforms coordinates and vectors (resp.) to the world
-<li class="fragment"> `setConstraint(Constrain)` applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a frame instance limiting its motion
+<li class="fragment"> The graph topology is set (even at run time) with [setReference(frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setReference-frames.core.Frame-).
+<li class="fragment"> Frames may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
+<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#scale-float-), locally manipulates a frame instance
+<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setMagnitude-float-), globally manipulates frame instances
+<li class="fragment"> (the frame methods) [location(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#location-frames.primitives.Vector-frames.core.Frame-) and [displacement(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#displacement-frames.primitives.Vector-frames.core.Frame-) transforms coordinates and vectors (resp.) from other frame instances
+<li class="fragment"> (the frame methods) [worldLocation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldDisplacement-frames.primitives.Vector-) transforms frame coordinates and vectors (resp.) to the world
+<li class="fragment"> (the graph methods) [location(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#location-frames.primitives.Vector-frames.core.Frame-) and [screenLocation(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#screenLocation-frames.primitives.Vector-frames.core.Frame-) transforms coordinates between frame and screen space
+<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setConstraint-frames.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a frame instance limiting its motion
 
 V:
 
