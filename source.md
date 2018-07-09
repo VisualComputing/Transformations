@@ -1917,7 +1917,7 @@ V:
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
-### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
@@ -1931,21 +1931,24 @@ V:
 
 ```processing
 Scene scene;
-Frame f1, f2, f3, eye;
+Frame f1, f2, f3;
 void setup() {
+  // Note that the scene.eye() is also instantiated
   scene = new Scene(this);
+  // Note the use of the default frame constructor to instantiate a
+  // detached leading frame (those whose parent is the world, such as f1):
   f1 = new Frame();
+  // whereas for the remaining frames we pass any constructor taking a
+  // reference frame paramater, such as Frame(Frame referenceFrame, float scaling):
   f2 = new Frame(f1, 1);
   f3 = new Frame(f1, 1);
-  eye = new Frame();
-  scene.setEye(eye);
 }
 ```
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
-### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
 <li class="fragment"> The scene gets automatically rendered respect to the `eye` frame
@@ -1961,7 +1964,7 @@ V:
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
-### Using [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
@@ -1999,56 +2002,61 @@ void draw() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
-### Using [nodes](https://visualcomputing.github.io/frames-javadocs/frames/core/Node.html)
+### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- n1 eye
+ f1 eye
   ^
   |\
- n2  n3
+ f2  f3
 ```
 
 ```processing
 Scene scene;
-Node n1, n2, n3, eye;
+Frame f1, f2, f3;
 void setup() {
   scene = new Scene(this);
-  n1 = new Node(scene);
-  n2 = new Node(n1);
-  n3 = new Node(n1);
-  eye = new Node(scene);
-  scene.setEye(eye);
+  // To attach a leading-frame (those whose parent is the world, such as f1)
+  // the scene parameter is passed to the Frame constructor:
+  f1 = new Frame(scene);
+  // whereas for the remaining frames we pass any constructor taking a
+  // reference frame paramater, such as Frame(Frame referenceFrame)
+  f2 = new Frame(f1);
+  f3 = new Frame(f1);
 }
 ```
-
-Observations:
-<li class="fragment"> Same as with frames
-<li class="fragment"> Nodes have [inverse kinematics](https://github.com/VisualComputing/framesjs/tree/processing/examples/ik) behavior
-<li class="fragment"> Nodes can be manipulated interactively by overriding `interact(Event)`
-<li class="fragment"> Nodes are picked using ray-tracing against a rectangular area around their projected `position() `
-<li class="fragment"> Nodes can be drawn by overriding `visit()`
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
-### Using [nodes](https://visualcomputing.github.io/frames-javadocs/frames/core/Node.html)
+### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+#### Advantages
+
+<li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling [traverse()](https://visualcomputing.github.io/frames-javadocs/frames/processing/Scene.html#traverse--)
+<li class="fragment"> Attached frames can exhibit [inverse kinematics](https://github.com/VisualComputing/framesjs/tree/processing/examples/ik) behavior
+<li class="fragment"> Attached frames can be drawn by overriding [visit()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#visit--) with your drawing code
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- n1 eye
+ f1 eye
   ^
   |\
- n2  n3
+ f2  f3
 ```
 
 ```processing
 void draw() {
-  // calls visit() on each node instance
+  // calls visit() on each attached frame instance
   scene.traverse();
 }
 ```
@@ -2081,7 +2089,12 @@ void setup() {
 }
 ```
 
-Observations:
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
+#### Advantages
+
 <li class="fragment"> Same as with nodes
 <li class="fragment"> Shapes are picked precisely using ray-tracing against the pixels of their projection
 <li class="fragment"> Call `set(PShape)` to bind a retained mode PShape to the shape
