@@ -2095,7 +2095,7 @@ V:
 ### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
 #### Advantages
 
-<li class="fragment"> Same as with nodes
+<li class="fragment"> Same as with attched frames
 <li class="fragment"> Shapes are picked precisely using ray-tracing against the pixels of their projection
 <li class="fragment"> Call `set(PShape)` to bind a retained mode PShape to the shape
 <li class="fragment"> Override `set(PGraphics)` to bind an immediate mode rendering procedure to the shape
