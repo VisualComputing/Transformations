@@ -29,7 +29,6 @@ H:
 
  1. Intro<!-- .element: class="fragment" data-fragment-index="1"-->
     * Active vs pasive transformations
-    * Shaders
  2. Linear transformations<!-- .element: class="fragment" data-fragment-index="2"-->
     * Scaling, rotation & shearing
  3. Affine transformations<!-- .element: class="fragment" data-fragment-index="3"-->
@@ -58,337 +57,6 @@ H:
 N:
 
 * Standard = Canonical
-
-V:
-
-## Intro: Shaders
-
-<div class="ulist">
-    <img src="fig/pipeline.png" alt="pipeline" width="55%" style="float: right">
-    <ul style="width: 30%;">
-        <p class="fragment" data-fragment-index="1">Vertex shader</p>
-        <p class="fragment" data-fragment-index="2">Fragment shader</p>
-    </ul>
-</div>
-
-V:
-
-## Intro: Shaders
-### Vertex shader: pseudo code
-
-```glsl
-for (int i = 0; i < vertexCount; i++) {
-  output = vertexShader(vertex[i]);
-}
-
-function vertexShader(vertex) {
-  projPos = projection * modelview * vertex.position;
-  litColor = lightColor * dot(vertex.normal, lightDirection);
-  return (projPos, litColor);
-}
-```
-
-V:
-
-## Intro: Shaders
-### Vertex shader
-
-```glsl
-uniform mat4 transform;
-attribute vec4 vertex;
-attribute vec4 color;
-varying vec4 vertColor;
-
-void main() {
-   gl_Position = transform * vertex;
-   vertColor = color;
-}
-```
-
-V:
-
-## Intro: Shaders
-### Vertex shader: glsl code for active *transform*
-
-```glsl
-uniform mat4 transform;
-attribute vec4 vertex;
-attribute vec4 color;
-varying vec4 vertColor;
-
-void main() {
-   gl_Position = transform * vertex;
-   vertColor = color;
-}
-```
-
-1. `transform = projection`
-  
-V:
-
-## Intro: Shaders
-### Vertex shader: glsl code for passive *transform*
-
-```glsl
-uniform mat4 transform;
-attribute vec4 vertex;
-attribute vec4 color;
-varying vec4 vertColor;
-
-void main() {
-   gl_Position = transform * vertex;
-   vertColor = color;
-}
-```
-
-1. `transform = projection * modelview`
-2. `transform = projection * view * model`
-
-(<a href="#/5/16">goto matrix composition</a> and then to <a href="#/6/12">eye transform</a>)
-
-V:
-
-## Intro: Shaders
-### Fragment shader: pseudo code
-
-```glsl
-for (int i = 0; i < fragmentCount; i++) {
-  screenBuffer[fragment[i].xy] = fragmentShader(fragment[i]);
-}
-
-function fragmentShader(fragment) {
-  return fragment.litColor;
-}
-```
-
-V:
-
-## Intro: Shaders
-### Fragment shader: glsl code
-
-```glsl
-varying vec4 vertColor;
-
-void main() {
-  gl_FragColor = vertColor;
-}
-```
-
-V:
-
-## Intro: Shaders
-### GLSL variable types
-
-<li class="fragment"> _uniform_: variables that remain constant for each vertex in the scene. Example: `uniform mat4 transform`
-<li class="fragment"> _attribute_: variables that change from vertex to vertex. Examples: `attribute vec4 vertex`, `attribute vec4 color`
-<li class="fragment"> _varying_:  variables that are exchanged between the vertex and the fragment shaders. Example: `varying vec4 vertColor`
-
-V:
-
-## Intro: Shaders
-### Common GLSL uniform variables emitted by P5
-
-| Name         | Alias              | Type        |
-|--------------|--------------------|-------------|
-| `transform`  | `transformMatrix`  | `mat4`      |
-| `modelview`  | `modelviewMatrix`  | `mat4`      |
-| `projection` | `projectionMatrix` | `mat4`      |
-| `texture`    | `texMap`           | `sampler2D` |
-
-V:
-
-## Intro: Shaders
-### Common GLSL attribute variables emitted by P5
-
-| Name                      | Type   |
-|---------------------------|--------|
-| `position` (or, `vertex`) | `vec4` |
-| `color`                   | `vec4` |
-| `normal`                  | `vec3` |
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader](https://processing.org/reference/PShader.html)
-
-> Class that encapsulates a GLSL shader program, including a vertex and a fragment shader
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [loadShader()](https://processing.org/reference/loadShader_.html)
-
-> Loads a shader into the PShader object
-
-Method signatures
-
-```processing
-  loadShader(fragFilename)
-  loadShader(fragFilename, vertFilename)
-```
-<!-- .element: class="fragment" data-fragment-index="1"-->
-
-Example
-
-```processing
-  PShader unalShader;
-  void setup() {
-    ...
-    //when no path is specified it looks in the sketch 'data' folder
-    unalShader = loadShader("unal_frag.glsl", "unal_vert.glsl");
-  }
-```
-<!-- .element: class="fragment" data-fragment-index="2"-->
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [shader()](https://processing.org/reference/shader_.html)
-
-> Applies the specified shader
-
-Method signature
-
-```processing
-  shader(shader)
-```
-<!-- .element: class="fragment" data-fragment-index="1"-->
-
-Example
-
-```processing
-  PShader simpleShader, unalShader;
-  void draw() {
-    ...
-    shader(simpleShader);
-    simpleGeometry();
-    shader(unalShader);
-    unalGeometry();
-  }
-```
-<!-- .element: class="fragment" data-fragment-index="2"-->
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [resetShader()](https://processing.org/reference/resetShader_.html)
-
-> Restores the default shaders
-
-Method signatures
-
-```processing
-  resetShader()
-```
-<!-- .element: class="fragment" data-fragment-index="1"-->
-
-Example
-
-```processing
-    PShader simpleShader;
-  void draw() {
-    ...
-    shader(simpleShader);
-    simpleGeometry();
-    resetshader();
-    otherGeometry();
-  }
-```
-<!-- .element: class="fragment" data-fragment-index="2"-->
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader.set()](https://processing.org/reference/PShader_set_.html)
-
-> Sets the uniform variables inside the shader to modify the effect while the program is running
-
-Method signatures for vector uniform variables `vec2`, `vec3` or `vec4`:
-
-```processing
-  .set(name, x)
-  .set(name, x, y)
-  .set(name, x, y, z)
-  .set(name, x, y, z, w)
-  .set(name, vec)
-```
-
-* *name*: of the uniform variable to modify
-* *x*, *y*, *z* and *w*: 1st, snd, 3rd and 4rd vec float components resp.
-* *vec*: PVector
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader.set()](https://processing.org/reference/PShader_set_.html)
-
-> Sets the uniform variables inside the shader to modify the effect while the program is running
-
-Method signatures for vector uniform variables `boolean[]`, `float[]`, `int[]`:
-
-```processing
-  .set(name, x)
-  .set(name, x, y)
-  .set(name, x, y, z)
-  .set(name, x, y, z, w)
-  .set(name, vec)
-```
-
-* *name*: of the uniform variable to modify
-* *x*, *y*, *z* and *w*: 1st, snd, 3rd and 4rd vec (boolean, float or int) components resp.
-* *vec*: boolean[], float[], int[]
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader.set()](https://processing.org/reference/PShader_set_.html)
-
-> Sets the uniform variables inside the shader to modify the effect while the program is running
-
-Method signatures for `mat3` and `mat4` uniform variables:
-
-```processing
-  .set(name, mat) // mat is PMatrix2D, or PMatrix3D
-```
-
-* *name* of the uniform variable to modify
-* *mat* PMatrix3D, or PMatrix2D
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader.set()](https://processing.org/reference/PShader_set_.html)
-
-> Sets the uniform variables inside the shader to modify the effect while the program is running
-
-Method signatures for vector uniform variables:
-
-```processing
-  .set(name, tex) // tex is a PImage
-```
-
-V:
-
-## Intro: Shaders
-### Processing shader API: [PShader.set()](https://processing.org/reference/PShader_set_.html)
-
-> Sets the uniform variables inside the shader to modify the effect while the program is running
-
-Example:
-
-```processing
-  PShader unalShader;
-  PMatrix3D projectionModelView1, projectionModelView2;
-  void draw() {
-    ...
-    shader(unalShader);
-    unalShader.set("unalMatrix", projectionModelView1);
-    unalGeometry1();
-    unalShader.set("unalMatrix", projectionModelView2);
-    unalGeometry2();
-  }
-```
-<!-- .element: class="fragment" data-fragment-index="1"-->
 
 H:
 
@@ -1237,12 +905,10 @@ Consider the following sequence of transformations:
 which is the same as: <!-- .element: class="fragment" data-fragment-index="5"-->
 `$P_n=M_n^*P$, where $M_n^*=M_n...M_2M_1$` <!-- .element: class="fragment" data-fragment-index="6"-->
 
-<a href="#/3/5">goto vertex shader</a><!-- .element: class="fragment" data-fragment-index="7"-->
-
-Mnemonic 1:<!-- .element: class="fragment" data-fragment-index="8"-->
+Mnemonic 1:<!-- .element: class="fragment" data-fragment-index="7"-->
    The (right-to-left) $M_1M_2...M_n$ transformation sequence is performed respect to a world (fixed) coordinate system
 
-Mnemonic 2:<!-- .element: class="fragment" data-fragment-index="9"-->
+Mnemonic 2:<!-- .element: class="fragment" data-fragment-index="8"-->
    The (left-to-right) $M_n,...M_2M_1$ transformation sequence is performed respect to a local (mutable) coordinate system
 
 V:
@@ -1303,7 +969,7 @@ V:
 
 ## Affine transformations: Matrix operations
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [default shader](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationDefaultShader/RotationDefaultShader.pde) (`applyMatrix()`)
+$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: `applyMatrix()`
 
 ```processing
 float xr=500, yr=250;
@@ -1335,7 +1001,7 @@ V:
 
 ## Affine transformations: Matrix operations
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [default shader](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationDefaultShader/RotationDefaultShader.pde) (`translation()` and `rotation()`)
+$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: `translation()` and `rotation()`
 
 ```processing
 float xr=500, yr=250;
@@ -1354,121 +1020,6 @@ void draw() {
 ```
 
 Hence `translate()`, `rotate()`, applies the transformation to the current `modelview`
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [simple shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationSimpleShader)
-
-```processing
-PShader simpleShader;
-
-void setup() {
-  size(700, 700, P3D);
-  // simple custom shader
-  simpleShader = loadShader("simple_frag.glsl", "simple_vert.glsl");
-  shader(simpleShader);
-} 
-```
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [simple shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationSimpleShader)
-
-[simple_vert.glsl](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationSimpleShader/data/simple_vert.glsl):
-
-```glsl
-uniform mat4 transform;
-attribute vec4 vertex;
-attribute vec4 color;
-varying vec4 vertColor;
-
-void main() {
-  gl_Position = transform * vertex;
-  vertColor = color;
-}
-```
-
-Since here we use the default uniforms (`transform`) and attributes (`vertex`, `color`) the rest of the sketch remains the same
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
-
-```processing
-PShader unalShader;
-PMatrix3D modelview;
-
-void setup() {
-  size(700, 700, P3D);
-  // unal custom shader
-  unalShader = loadShader("unal_frag.glsl", "unal_vert.glsl");
-  shader(unalShader);
-  modelview = new PMatrix3D();
-} 
-```
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
-
-```processing
-void draw() {
-  background(0);
-  //load identity
-  modelview.reset();
-  // 1. T(xr,yr)
-  modelview.translate(xr, yr);
-  // 2. Rz(β)
-  modelview.rotate(beta);
-  // 1. T(-xr,-yr)
-  modelview.translate(-xr, -yr);
-  emitUniforms();
-  // drawing code follows
-}
-```
-
-```processing
-void emitUniforms() {
-  //hack to retrieve the Processing projection matrix
-  PMatrix3D projectionTimesModelview = new PMatrix3D(((PGraphics2D)g).projection);
-  projectionTimesModelview.apply(modelview);
-  //GLSL uses column major order, whereas processing uses row major order
-  projectionTimesModelview.transpose();
-  unalShader.set("unalMatrix", projectionTimesModelview);
-}
-```
-<!-- .element: class="fragment" data-fragment-index="1"-->
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
-$T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: [unal shader](https://github.com/VisualComputing/Transformations/tree/gh-pages/sketches/desktop/rotations/RotationUnalShader)
-
-[unal_vert.glsl](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/rotations/RotationUnalShader/data/unal_vert.glsl):
-
-```glsl
-uniform mat4 unalMatrix;
-attribute vec4 vertex;
-attribute vec4 color;
-varying vec4 unalVertColor;
-
-void main() {
-  gl_Position = unalMatrix * vertex;
-  unalVertColor = color;
-}
-```
-
-<li class="fragment"> Note the use of the custom uniform `unalMatrix` instead of the default `transform`
-<li class="fragment"> The [Shader Programming for Computational Arts and Design](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=ysaclbloDHk=&t=1) paper discusses API _simplicity_ and _flexibility_ in shader programming
 
 V:
 
@@ -1864,7 +1415,6 @@ Let the eye frame transform be defined, like it is with any other frame, as:<!--
 
 The eye transform is therefore:<!-- .element: class="fragment" data-fragment-index="3"-->
 `$\left.M_{eye}^{*}\right.^{-1}$`<!-- .element: class="fragment" data-fragment-index="4"-->
-<a href="#/3/5">(goto vertex shader)</a><!-- .element: class="fragment" data-fragment-index="4"-->
 
 For example, for an eye frame transform:<!-- .element: class="fragment" data-fragment-index="5"-->
 `$M_{eye}^*=T(x,y,z)R(\beta)S(s)$`<!-- .element: class="fragment" data-fragment-index="6"-->
@@ -2540,8 +2090,6 @@ H:
 * [Math primer for graphics and game development](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf)
 * [Proscene: A feature-rich framework for interactive environments](https://www.sciencedirect.com/science/article/pii/S235271101730002X?_rdoc=1&_fmt=high&_origin=gateway&_docanchor=&md5=b8429449ccfc9c30159a5f9aeaa92ffb)
 * [Processing 2d transformations tutorial](https://www.processing.org/tutorials/transform2d/)
-* [Processing shaders tutorial](https://www.processing.org/tutorials/pshader/)
-* [Shader Programming for Computational Arts and Design - A Comparison between Creative Coding Frameworks](http://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=ysaclbloDHk=&t=1)
 * [OpenGL projection matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html)
 * [The Perspective and Orthographic Projection Matrix](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix)
 
