@@ -2,7 +2,7 @@
 //Universidad Nacional de Colombia
 
 var sketch = function( p ) {
-	var m = 0.0;
+	var m = 1;
 	var xr = 0;
 	var yr = 0;
 	
@@ -43,7 +43,7 @@ var sketch = function( p ) {
 		yr = 0;
 	  }
 	}
-
+	
 	//Draw the pivot
 	function drawPivot() {
 		p.push();
@@ -72,4 +72,4 @@ var sketch = function( p ) {
 	}
 };
 
-var s5_0 = new p5(sketch, 'scaling2d_id');
+new p5(sketch, 'scaling2d_id');

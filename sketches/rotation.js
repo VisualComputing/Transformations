@@ -54,4 +54,4 @@ var sketch = function( p ) {
     }
 };
 
-var p5_0 = new p5(sketch, 'rotation_id');
+new p5(sketch, 'rotation_id');
