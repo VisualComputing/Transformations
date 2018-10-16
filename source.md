@@ -1364,6 +1364,23 @@ V:
  L2  L3
 ```
 
+> Scenegraphs are simply and elegantly implemented by means of affine transformations using a matrix stack. See [pushMatrix()](https://processing.org/reference/pushMatrix_.html) and [popMatrix()](https://processing.org/reference/popMatrix_.html)
+
+V:
+
+## Modelling and view: [Scene-graph](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/scenegraph/SceneGraph/SceneGraph.pde)
+### Eyeless example
+
+```processing
+ World
+  ^
+  |
+ L1
+  ^
+  |\
+ L2  L3
+```
+
 ```processing
 void drawModel() {
   // define a local frame L1 (respect to the world)
@@ -1505,6 +1522,13 @@ V:
 <li class="fragment"> The graph topology is set (even at run time) with [setReference(frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setReference-frames.core.Frame-).
 <li class="fragment"> Frames may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
 <li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#scale-float-), locally manipulates a frame instance
+
+V:
+
+## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+#### Advantages
+
 <li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setMagnitude-float-), globally manipulates frame instances
 <li class="fragment"> (the frame methods) [location(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#location-frames.primitives.Vector-frames.core.Frame-) and [displacement(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#displacement-frames.primitives.Vector-frames.core.Frame-) transforms coordinates and vectors (resp.) from other frame instances
 <li class="fragment"> (the frame methods) [worldLocation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldDisplacement-frames.primitives.Vector-) transforms frame coordinates and vectors (resp.) to the world
@@ -1586,6 +1610,7 @@ V:
 #### Advantages
 
 <li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling [traverse()](https://visualcomputing.github.io/frames-javadocs/frames/processing/Scene.html#traverse--)
+<li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
 <li class="fragment"> Attached frames can exhibit [inverse kinematics](https://github.com/VisualComputing/framesjs/tree/processing/examples/ik) behavior
 <li class="fragment"> Attached frames can be drawn by overriding [visit()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#visit--) with your drawing code
 
@@ -1798,6 +1823,13 @@ $`
 <p class="fragment" data-fragment-index="3">
 `$P_c = Ortho(l,r,b,t,n,f) \bullet P_e$`
 </p>
+
+V:
+
+## Projections: Orthographic
+### Example
+
+<div id='orthographic_id'></div>
 
 V:
 
@@ -2082,6 +2114,13 @@ $`
 <p class="fragment" data-fragment-index="2">
 `$P_c = Persp(fovy,aspectRatio,n,f) \bullet P_e$`
 </p>
+
+V:
+
+## Projections: Perspective
+### Example
+
+<div id='perspective_id'></div>
 
 H:
 
