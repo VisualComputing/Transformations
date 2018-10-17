@@ -1019,8 +1019,6 @@ void draw() {
 } 
 ```
 
-Hence `translate()`, `rotate()`, applies the transformation to the current `modelview`
-
 V:
 
 ## Affine transformations: Matrix operations
@@ -1384,23 +1382,23 @@ V:
 ```processing
 void drawModel() {
   // define a local frame L1 (respect to the world)
-  pushMatrix();
-  affineTransform1();
+  pushMatrix(); // saves current matrix transform (I)
+  affineTransform1(); // same as: I * affineTransform1()
   drawL1();
   // define a local frame L2 respect to L1
-  pushMatrix();
-  affineTransform2();
+  pushMatrix(); // saves current matrix transform (I * affineTransform1())
+  affineTransform2(); // same as: I * affineTransform1() * affineTransform2()
   drawL2();
   // "return" to L1
-  popMatrix();
+  popMatrix(); // removes the top of the stack, restoring I * affineTransform1()
   // define a local coordinate system L3 respect to L1
-  pushMatrix();
-  affineTransform3();
+  pushMatrix(); // saves current matrix transform (I * affineTransform1())
+  affineTransform3(); // same as: I * affineTransform1() * affineTransform3()
   drawL3();
   // return to L1
-  popMatrix();
+  popMatrix(); // removes the top of the stack, restoring I * affineTransform1()
   // return to World
-  popMatrix();
+  popMatrix(); // removes the top of the stack, restoring I
 }
 ```
 <!-- .element: class="fragment" data-fragment-index="1"-->
@@ -1834,6 +1832,37 @@ V:
 V:
 
 ## Projections: Orthographic
+### Example [code](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/orthographic.js)
+
+```processing
+var sketch = function( p ) {
+    p.setup = function() {
+      p.createCanvas(700, 700, p.WEBGL);
+      // define an orthographic matrix projection
+      p.ortho(-p.width / 2, p.width / 2, p.height / 2, -p.height / 2, 0, 1000);
+    };
+
+    p.draw = function() {
+        p.background(100);
+        p.orbitControl(); // interactively modifies the view matrix with the mouse
+        p.strokeWeight(2);
+        p.stroke(255, 0, 0);
+        p.fill(0, 255, 255, 125);
+        for (var i = -1; i < 2; i++) {
+            for (var j = -2; j < 3; j++) {
+                p.push(); // saves current matrix transform (ortho * view)
+                p.translate(i * 160, 0, j * 160); // same as: ortho * view * translate
+                p.box(80, 80, 80);
+                p.pop(); // restores the top of the matrix stack: ortho * view
+            }
+        }
+    };
+};
+```
+
+V:
+
+## Projections: Orthographic
 ### Matrix form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
 
 <blockquote>
@@ -2121,6 +2150,39 @@ V:
 ### Example
 
 <div id='perspective_id'></div>
+
+V:
+
+## Projections: Perspective
+### Example [code](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/perspective.js)
+
+```processing
+var sketch = function( p ) {
+    p.setup = function() {
+      p.createCanvas(700, 700, p.WEBGL);
+      var fov = 60 / 180 * p.PI;
+      var cameraZ = p.height / 2.0 / p.tan(fov / 2.0);
+      // define a perspective matrix projection
+      p.perspective(60 / 180 * p.PI, p.width / p.height, cameraZ * 0.1, cameraZ * 10);
+    };
+
+    p.draw = function() {
+        p.background(100);
+        p.orbitControl(); // interactively modifies the view matrix with the mouse
+        p.strokeWeight(2);
+        p.stroke(0, 255, 0);
+        p.fill(255, 0, 255, 125);
+        for (var i = -1; i < 2; i++) {
+            for (var j = -2; j < 3; j++) {
+                p.push(); // saves current matrix transform (perspective * view)
+                p.translate(i * 160, 0, j * 160); // same as: perspective * view * translate
+                p.box(80, 80, 80);
+                p.pop(); // restores the top of the matrix stack: perspective * view
+            }
+        }
+    };
+};
+```
 
 H:
 
