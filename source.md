@@ -45,6 +45,7 @@ V:
  5. Projections<!-- .element: class="fragment" data-fragment-index="5"-->
     * Orthographic
     * Perspective
+ 6. Matrix handling in the frames framework<<!-- .element: class="fragment" data-fragment-index="6"-->
  
 H:
 
@@ -2183,6 +2184,35 @@ var sketch = function( p ) {
     };
 };
 ```
+
+H:
+
+## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+### Geometry data mapping
+
+* The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">frame/a> space to world space
+* The <a href="#/6/13">view</a> matrix (`$V$`) maps from world space to eye space
+* The _projection_ (`$P$`) matrix maps from eye space to <a href="#/7">clip space</a>
+
+> Composing all three, i.e.,  `$P * V * M$`, would thus map from object space to clip space
+
+V:
+
+## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+### Matrix stack naming conventions
+
+1. <a href="#/6/11">When the bottom of the matrix stack is filled with the identity matrix</a> (`$I$`), its top is referred to as the _model_ matrix
+2. <a href="#/6/16">When the bottom of the matrix stack is filled with the view matrix</a> (`$V$`), its top is referred to as the _modelview_ matrix
+
+V:
+
+## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+### Main methods to retrieve the aforementioned matrices
+
+* Use [Frame.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the frame _model_ matrix
+* Use [Frame.view()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#view--) to retrieve the frame _view_ matrix, i.e., the given frame represents an eye
+* Use [Graph.projection()](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#projection--) to retrieve the current _projection_ matrix
+* Use [Graph.modelView()](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#modelView--) to retrieve the current _modelview_ matrix
 
 H:
 
