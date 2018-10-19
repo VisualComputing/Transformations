@@ -2190,7 +2190,7 @@ H:
 ## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
 ### Geometry data mapping
 
-* The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">frame/a> space to world space
+* The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">frame</a> space to world space
 * The <a href="#/6/13">view</a> matrix (`$V$`) maps from world space to eye space
 * The _projection_ (`$P$`) matrix maps from eye space to <a href="#/7">clip space</a>
 
