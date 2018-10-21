@@ -1340,7 +1340,7 @@ V:
 
 > A frame is defined by an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
 
-> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, `$s > 0$` frame definition is the one used in [frames](https://github.com/VisualComputing/framesjs)
+> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, `$s > 0$` frame definition is the one used in [frames](https://github.com/VisualComputing/frames)
 
 V:
 
@@ -1482,7 +1482,7 @@ V:
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
@@ -1513,7 +1513,7 @@ void setup() {
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
@@ -1524,7 +1524,7 @@ V:
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
@@ -1536,7 +1536,7 @@ V:
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
@@ -1574,7 +1574,7 @@ void draw() {
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
@@ -1604,18 +1604,18 @@ void setup() {
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
 <li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling [traverse()](https://visualcomputing.github.io/frames-javadocs/frames/processing/Scene.html#traverse--)
 <li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
-<li class="fragment"> Attached frames can exhibit [inverse kinematics](https://github.com/VisualComputing/framesjs/tree/processing/examples/ik) behavior
+<li class="fragment"> Attached frames can exhibit _inverse kinematics_ (in the works) behavior
 <li class="fragment"> Attached frames can be drawn by overriding [visit()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#visit--) with your drawing code
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
@@ -1637,7 +1637,7 @@ void draw() {
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
 
 ```processing
@@ -1665,7 +1665,7 @@ void setup() {
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
 #### Advantages
 
@@ -1676,7 +1676,7 @@ V:
 
 V:
 
-## Modelling and view in [frames](https://github.com/VisualComputing/framesjs)
+## Modelling and view in [frames](https://github.com/VisualComputing/frames)
 ### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
 
 ```processing
@@ -2187,7 +2187,7 @@ var sketch = function( p ) {
 
 H:
 
-## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+## Matrix handling in [frames]((https://github.com/VisualComputing/frames)
 ### Geometry data mapping
 
 * The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">frame</a> space to world space
@@ -2198,7 +2198,7 @@ H:
 
 V:
 
-## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+## Matrix handling in [frames]((https://github.com/VisualComputing/frames)
 ### Matrix stack naming conventions
 
 1. <a href="#/6/11">When the bottom of the matrix stack is filled with the identity matrix</a> (`$I$`), its top is referred to as the _model_ matrix
@@ -2206,7 +2206,7 @@ V:
 
 V:
 
-## Matrix handling in [frames]((https://github.com/VisualComputing/framesjs)
+## Matrix handling in [frames]((https://github.com/VisualComputing/frames)
 ### Main methods to retrieve the aforementioned matrices
 
 * Use [Frame.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the frame _model_ matrix
