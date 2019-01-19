@@ -1600,7 +1600,7 @@ void setup() {
   f2 = new Frame(f1) {
     @Override
     public boolean graphics(PGraphics pg) {
-      Scene.drawTorusSolenoid();
+      Scene.drawTorusSolenoid(pg);
       return true;
     }
   };
