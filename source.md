@@ -2110,6 +2110,16 @@ $`
 V:
 
 ## Projections: Perspective
+### Z-Fighting
+
+<figure>
+    <img height="400" src="fig/zfight.png">
+    <figcaption>Comparison of Depth Buffer Precisions</figcaption>
+</figure>
+
+V:
+
+## Projections: Perspective
 ### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
 
 <blockquote>
