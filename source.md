@@ -45,7 +45,7 @@ V:
  5. Projections<!-- .element: class="fragment" data-fragment-index="5"-->
     * Orthographic
     * Perspective
- 6. Matrix handling in the frames framework<<!-- .element: class="fragment" data-fragment-index="6"-->
+ 6. Matrix handling in the frames framework<!-- .element: class="fragment" data-fragment-index="6"-->
  
 H:
 
