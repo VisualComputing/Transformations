@@ -2222,7 +2222,8 @@ V:
 * Use [Frame.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the frame _model_ matrix
 * Use [Frame.view()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#view--) to retrieve the frame _view_ matrix.
 * Use [Frame.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#projection-frames.core.Graph.Type-float-float-float-float-boolean-) to retrieve the frame _projection_ matrix.
-    * Use also [Frame.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#orthographic-float-float-float-float-) and [Frame.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the orthographic and perspective matrices, resp.
+    * Use [Frame.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
+    * Use [Frame.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
 
 H:
 
