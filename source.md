@@ -2126,7 +2126,7 @@ V:
 `$$l=-r$$`
 `$$b=-t$$`
 `$$aspectRatio=screenWidth/screenHeight$$`
-`$fovy:$` vertical field-of-view (in radians)
+`$fov:$` (horizontal) field-of-view (in radians)
 </blockquote>
 
 <p class="fragment" data-fragment-index="1">
@@ -2138,8 +2138,8 @@ w_c \cr
 \end{bmatrix}
 = 
 \begin{bmatrix}
-1 \above 1pt \tan (fovy/2)aspectRatio & 0                   & 0                     & 0                   \cr
-0                                     & \tan (fovy/2)       & 0                     & 0                   \cr
+1 \above 1pt \tan (fov/2)aspectRatio & 0                   & 0                     & 0                   \cr
+0                                     & \tan (fov/2)       & 0                     & 0                   \cr
 0                                     & 0                   & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
 0                                     & 0                   & -1                    & 0                   \cr
 \end{bmatrix} \bullet \begin{bmatrix} 
@@ -2152,7 +2152,7 @@ $`
 </p>
 
 <p class="fragment" data-fragment-index="2">
-`$P_c = Persp(fovy,aspectRatio,n,f) \bullet P_e$`
+`$P_c = Persp(fov,aspectRatio,n,f) \bullet P_e$`
 </p>
 
 V:
