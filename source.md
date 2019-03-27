@@ -1506,8 +1506,8 @@ void setup() {
   f1 = new Frame();
   // whereas for the remaining frames we pass any constructor taking a
   // reference frame paramater, such as Frame(Frame referenceFrame, float scaling):
-  f2 = new Frame(f1, 1);
-  f3 = new Frame(f1, 1);
+  f2 = new Frame(f1);
+  f3 = new Frame(f1);
 }
 ```
 
@@ -1597,21 +1597,16 @@ void setup() {
   f1 = new Frame(scene);
   // whereas for the remaining frames we pass any constructor taking a
   // reference frame paramater, such as Frame(Frame referenceFrame)
-  f2 = new Frame(f1);
-  f3 = new Frame(f1);
+  f2 = new Frame(f1) {
+    @Override
+    public boolean graphics(PGraphics pg) {
+      Scene.drawTorusSolenoid(pg);
+      return true;
+    }
+  };
+  f3 = new Frame(f1, createShape(BOX, 60));
 }
 ```
-
-V:
-
-## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
-#### Advantages
-
-<li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling [traverse()](https://visualcomputing.github.io/frames-javadocs/frames/processing/Scene.html#traverse--)
-<li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
-<li class="fragment"> Attached frames can exhibit _inverse kinematics_ (in the works) behavior
-<li class="fragment"> Attached frames can be drawn by overriding [visit()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#visit--) with your drawing code
 
 V:
 
@@ -1630,70 +1625,22 @@ V:
 
 ```processing
 void draw() {
-  // calls visit() on each attached frame instance
-  scene.traverse();
+  scene.render();
 }
 ```
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
-
-```processing
- World
-  ^
-  |\
- s1 eye
-  ^
-  |\
- s2  s3
-```
-
-```processing
-Scene scene;
-Shape s1, s2, s3, eye;
-void setup() {
-  scene = new Scene(this);
-  s1 = new Shape(scene);
-  s2 = new Shape(s1);
-  s3 = new Shape(s1);
-  eye = new Shape(scene);
-  scene.setEye(eye);
-}
-```
-
-V:
-
-## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
+### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
-<li class="fragment"> Same as with attched frames
-<li class="fragment"> Shapes are picked precisely using ray-tracing against the pixels of their projection
-<li class="fragment"> Call `set(PShape)` to bind a retained mode PShape to the shape
-<li class="fragment"> Override `set(PGraphics)` to bind an immediate mode rendering procedure to the shape
-
-V:
-
-## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using [shapes](https://visualcomputing.github.io/frames-javadocs/frames/processing/Shape.html)
-
-```processing
- World
-  ^
-  |\
- s1 eye
-  ^
-  |\
- s2  s3
-```
-
-```processing
-void draw() {
-  scene.traverse();
-}
-```
+<li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling _render()_
+<li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
+<li class="fragment"> Attached frames can exhibit _inverse kinematics_ (in the works) behavior
+<li class="fragment"> Frames are picked precisely using ray-tracing against the pixels of their shape projections
+<li class="fragment"> Call `shape(PShape)` to bind a retained mode PShape to the frame
+<li class="fragment"> Override `boolean graphics(PGraphics)` to bind an immediate mode rendering procedure to the frame
 
 H:
 
