@@ -1182,15 +1182,15 @@ missing:
 
 H:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 > Mnemonic 2: The (left-to-right) $M_n,...M_2M_1$ transformation sequence is performed respect to a local (mutable) coordinate system
 
-Local coordinate systems are commonly referred to as "frames" <!-- .element: class="fragment" data-fragment-index="1"-->
+A "node" encapsulates a local coordinate system <!-- .element: class="fragment" data-fragment-index="1"-->
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 Consider the function `axes()` which draws the X (horizontal) and Y vertical) axes:
 
@@ -1214,7 +1214,7 @@ void axes() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 let's first call the `axes()` function to see what it does:
 
@@ -1230,7 +1230,7 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 now let's call it again, but pre-translating it first:
 
@@ -1248,7 +1248,7 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 let's add a rotation to the second `axes()` call:
 
@@ -1267,7 +1267,7 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 let's do something similar with a third `axes()` call:
 
@@ -1290,7 +1290,7 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 see the result when we animate only the _first_ rotation;
 
@@ -1313,7 +1313,7 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
 and now see the result when we animate only the _second_ rotation;
 
@@ -1336,17 +1336,17 @@ void draw() {
 
 V:
 
-## Modelling and view: Frame notion
+## Modelling and view: Node notion
 
-> A frame is defined by an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
+> A node encapsulates an affine (composed) transform: `$M_i^*, 1 \geq i$` read in left-to-right order (<a href="#/5/16">goto mnemonic 2</a>)
 
-> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, `$s > 0$` frame definition is the one used in [frames](https://github.com/VisualComputing/frames)
+> Note that the `$T(x,y,z) * R_u(\beta) * S(s)$`, `$s > 0$` definition is the one used in [frames](https://github.com/VisualComputing/frames)
 
 V:
 
 ## Modelling and view: [Scene-graph](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/scenegraph/SceneGraph/SceneGraph.pde)
 
-> A scene-graph is a [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) of frames which root is the world coordinate system
+> A scene-graph is a [directed acyclic graph (DAG)](https://en.wikipedia.org/wiki/Directed_acyclic_graph) of nodes which root is the world coordinate system
 
 V:
 
@@ -1382,11 +1382,11 @@ V:
 
 ```processing
 void drawModel() {
-  // define a local frame L1 (respect to the world)
+  // define a local node L1 (respect to the world)
   pushMatrix(); // saves current matrix transform (I)
   affineTransform1(); // same as: I * affineTransform1()
   drawL1();
-  // define a local frame L2 respect to L1
+  // define a local node L2 respect to L1
   pushMatrix(); // saves current matrix transform (I * affineTransform1())
   affineTransform2(); // same as: I * affineTransform1() * affineTransform2()
   drawL2();
@@ -1414,7 +1414,7 @@ V:
 V:
 
 ## Modelling and view: [Scene-graph](https://github.com/VisualComputing/Transformations/blob/gh-pages/sketches/desktop/scenegraph/SceneGraph/SceneGraph.pde)
-### View transform (eye-frame)
+### View transform (eye-node)
 
 ```processing
  World
@@ -1426,13 +1426,13 @@ V:
 ... ...
 ```
 
-Let the eye frame transform be defined, like it is with any other frame, as:<!-- .element: class="fragment" data-fragment-index="1"-->
+Let the eye node transform be defined, like it is with any other node, as:<!-- .element: class="fragment" data-fragment-index="1"-->
 `$M_{eye}^*$`<!-- .element: class="fragment" data-fragment-index="2"-->
 
 The eye transform is therefore:<!-- .element: class="fragment" data-fragment-index="3"-->
 `$\left.M_{eye}^{*}\right.^{-1}$`<!-- .element: class="fragment" data-fragment-index="4"-->
 
-For example, for an eye frame transform:<!-- .element: class="fragment" data-fragment-index="5"-->
+For example, for an eye node transform:<!-- .element: class="fragment" data-fragment-index="5"-->
 `$M_{eye}^*=T(x,y,z)R(\beta)S(s)$`<!-- .element: class="fragment" data-fragment-index="6"-->
 
 The eye transform would be:<!-- .element: class="fragment" data-fragment-index="7"-->
@@ -1440,7 +1440,7 @@ The eye transform would be:<!-- .element: class="fragment" data-fragment-index="
 
 N:
 
-`$M_{eye}^*$` would position (orient, scale, ...) the eye frame
+`$M_{eye}^*$` would position (orient, scale, ...) the eye node
 in the world, but want it to be the other way around (i.e., draw the scene from the eye point-of-view)
 
 V:
@@ -1460,7 +1460,7 @@ V:
 
 ```processing
 void draw() {
-  // the following sequence would position (orient, scale, ...) the eye frame in the world:
+  // the following sequence would position (orient, scale, ...) the eye node in the world:
   // translate(eyePosition.x, eyePosition.y);
   // rotate(eyeOrientation);
   // scale(eyeScaling)
@@ -1483,89 +1483,89 @@ V:
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- f1 eye
+ n1 eye
   ^
   |\
- f2  f3
+ n2  n3
 ```
 
 ```processing
 Scene scene;
-Frame f1, f2, f3;
+Node n1, n2, n3;
 void setup() {
   // Note that the scene.eye() is also instantiated
   scene = new Scene(this);
-  // Note the use of the default frame constructor to instantiate a
-  // detached leading frame (those whose parent is the world, such as f1):
-  f1 = new Frame();
-  // whereas for the remaining frames we pass any constructor taking a
-  // reference frame paramater, such as Frame(Frame referenceFrame, float scaling):
-  f2 = new Frame(f1);
-  f3 = new Frame(f1);
+  // Note the use of the default node constructor to instantiate a
+  // detached leading node (those whose parent is the world, such as f1):
+  n1 = new Node();
+  // whereas for the remaining nodes we pass any
+  // constructor taking a reference node paramater:
+  n2 = new Node(n1);
+  n3 = new Node(n1);
 }
 ```
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
-<li class="fragment"> The scene gets automatically rendered respect to the `eye` frame
-<li class="fragment"> The graph topology is set (even at run time) with [setReference(frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setReference-frames.core.Frame-).
-<li class="fragment"> Frames may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
-<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#scale-float-), locally manipulates a frame instance
+<li class="fragment"> The scene gets automatically rendered respect to the `eye` node
+<li class="fragment"> The graph topology is set (even at run time) with [setReference(node)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setReference-frames.core.Frame-).
+<li class="fragment"> Nodes may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
+<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#scale-float-), locally manipulates a node instance
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
-<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setMagnitude-float-), globally manipulates frame instances
-<li class="fragment"> (the frame methods) [location(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#location-frames.primitives.Vector-frames.core.Frame-) and [displacement(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#displacement-frames.primitives.Vector-frames.core.Frame-) transforms coordinates and vectors (resp.) from other frame instances
-<li class="fragment"> (the frame methods) [worldLocation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldDisplacement-frames.primitives.Vector-) transforms frame coordinates and vectors (resp.) to the world
-<li class="fragment"> (the graph methods) [location(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#location-frames.primitives.Vector-frames.core.Frame-) and [screenLocation(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#screenLocation-frames.primitives.Vector-frames.core.Frame-) transforms coordinates between frame and screen space
-<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setConstraint-frames.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a frame instance limiting its motion
+<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setMagnitude-float-), globally manipulates node instances
+<li class="fragment"> (the node methods) [location(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#location-frames.primitives.Vector-frames.core.Frame-) and [displacement(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#displacement-frames.primitives.Vector-frames.core.Frame-) transforms coordinates and vectors (resp.) from other node instances
+<li class="fragment"> (the node methods) [worldLocation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldDisplacement-frames.primitives.Vector-) transforms node coordinates and vectors (resp.) to the world
+<li class="fragment"> (the graph methods) [location(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#location-frames.primitives.Vector-frames.core.Frame-) and [screenLocation(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#screenLocation-frames.primitives.Vector-frames.core.Frame-) transforms coordinates between node and screen space
+<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setConstraint-frames.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a node instance limiting its motion
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- f1 eye
+ n1 eye
   ^
   |\
- f2  f3
+ n2  n3
 ```
 
 ```processing
 void draw() {
-  // enter f1
+  // enter n1
   pushMatrix();
-  scene.applyTransformation(f1);
-  drawF1();
-  // enter f2
+  scene.applyTransformation(n1);
+  drawN1();
+  // enter n2
   pushMatrix();
-  scene.applyTransformation(f1);
-  drawF2();
-  // "return" to f1
+  scene.applyTransformation(n1);
+  drawN2();
+  // "return" to n1
   popMatrix();
-  // enter f3
+  // enter n3
   pushMatrix();
-  scene.applyTransformation(f3);
-  drawF3();
-  // return to f1
+  scene.applyTransformation(n3);
+  drawN3();
+  // return to n1
   popMatrix();
   // return to World
   popMatrix();
@@ -1575,52 +1575,52 @@ void draw() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- f1 eye
+ n1 eye
   ^
   |\
- f2  f3
+ n2  n3
 ```
 
 ```processing
 Scene scene;
-Frame f1, f2, f3;
+Node n1, n2, n3;
 void setup() {
   scene = new Scene(this);
-  // To attach a leading-frame (those whose parent is the world, such as f1)
-  // the scene parameter is passed to the Frame constructor:
-  f1 = new Frame(scene);
-  // whereas for the remaining frames we pass any constructor taking a
-  // reference frame paramater, such as Frame(Frame referenceFrame)
-  f2 = new Frame(f1) {
+  // To attach a leading-node (those whose parent is the world, such as n1)
+  // the scene parameter is passed to the node constructor:
+  n1 = new Node(scene);
+  // whereas for the remaining nodes we pass any constructor taking a
+  // reference node paramater, such as Node(Node referenceNode)
+  n2 = new Node(n1) {
     @Override
     public boolean graphics(PGraphics pg) {
       Scene.drawTorusSolenoid(pg);
       return true;
     }
   };
-  f3 = new Frame(f1, createShape(BOX, 60));
+  n3 = new Node(n1, createShape(BOX, 60));
 }
 ```
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 
 ```processing
  World
   ^
   |\
- f1 eye
+ n1 eye
   ^
   |\
- f2  f3
+ n2  n3
 ```
 
 ```processing
@@ -1632,15 +1632,15 @@ void draw() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [frames](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
 #### Advantages
 
-<li class="fragment"> Same as with _detached_ frames, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling _render()_
+<li class="fragment"> Same as with _detached_ nodes, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling _render()_
 <li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
-<li class="fragment"> Attached frames can exhibit _inverse kinematics_ (in the works) behavior
-<li class="fragment"> Frames are picked precisely using ray-tracing against the pixels of their shape projections
-<li class="fragment"> Call `shape(PShape)` to bind a retained mode PShape to the frame
-<li class="fragment"> Override `boolean graphics(PGraphics)` to bind an immediate mode rendering procedure to the frame
+<li class="fragment"> Attached nodes can exhibit _inverse kinematics_ (in the works) behavior
+<li class="fragment"> Nodes are picked precisely using ray-tracing against the pixels of their shape projections
+<li class="fragment"> Call `shape(PShape)` to bind a retained mode PShape to the node
+<li class="fragment"> Override `boolean graphics(PGraphics)` to bind an immediate mode rendering procedure to the node
 
 H:
 
@@ -2166,11 +2166,11 @@ V:
 ## Matrix handling in [frames]((https://github.com/VisualComputing/frames)
 ### Main methods to retrieve the aforementioned matrices
 
-* Use [Frame.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the frame _model_ matrix
-* Use [Frame.view()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#view--) to retrieve the frame _view_ matrix.
-* Use [Frame.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#projection-frames.core.Graph.Type-float-float-float-float-boolean-) to retrieve the frame _projection_ matrix.
-    * Use [Frame.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
-    * Use [Frame.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
+* Use [Node.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the node _model_ matrix
+* Use [Node.view()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#view--) to retrieve the node _view_ matrix.
+* Use [Node.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#projection-frames.core.Graph.Type-float-float-float-float-boolean-) to retrieve the node _projection_ matrix.
+    * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
+    * Use [Node.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
 
 H:
 
