@@ -1483,7 +1483,7 @@ V:
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 
 ```processing
  World
@@ -1514,30 +1514,30 @@ void setup() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 #### Advantages
 
 <li class="fragment"> The scene gets automatically rendered respect to the `eye` node
-<li class="fragment"> The graph topology is set (even at run time) with [setReference(node)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setReference-frames.core.Frame-).
+<li class="fragment"> The graph topology is set (even at run time) with [setReference(node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setReference-nub.core.Node-).
 <li class="fragment"> Nodes may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
-<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#scale-float-), locally manipulates a node instance
+<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setTranslation-frames.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#translate-frames.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setRotation-frames.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#rotate-frames.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#scale-float-), locally manipulates a node instance
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 #### Advantages
 
-<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setMagnitude-float-), globally manipulates node instances
-<li class="fragment"> (the node methods) [location(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#location-frames.primitives.Vector-frames.core.Frame-) and [displacement(Vector, Frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#displacement-frames.primitives.Vector-frames.core.Frame-) transforms coordinates and vectors (resp.) from other node instances
-<li class="fragment"> (the node methods) [worldLocation(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldDisplacement-frames.primitives.Vector-) transforms node coordinates and vectors (resp.) to the world
-<li class="fragment"> (the graph methods) [location(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#location-frames.primitives.Vector-frames.core.Frame-) and [screenLocation(vector, frame)](https://visualcomputing.github.io/frames-javadocs/frames/core/Graph.html#screenLocation-frames.primitives.Vector-frames.core.Frame-) transforms coordinates between node and screen space
-<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#setConstraint-frames.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/frames-javadocs/frames/primitives/constraint/Constraint.html) to a node instance limiting its motion
+<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setPosition-frames.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setOrientation-frames.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setMagnitude-float-), globally manipulates node instances
+<li class="fragment"> (the node methods) [location(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#location-frames.primitives.Vector-frames.core.Node-) and [displacement(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#displacement-frames.primitives.Vector-frames.core.Node-) transforms coordinates and vectors (resp.) from other node instances
+<li class="fragment"> (the node methods) [worldLocation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldLocation-frames.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldDisplacement-frames.primitives.Vector-) transforms node coordinates and vectors (resp.) to the world
+<li class="fragment"> (the graph methods) [location(vector, frame)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#location-frames.primitives.Vector-frames.core.Node-) and [screenLocation(vector, frame)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#screenLocation-frames.primitives.Vector-frames.core.Node-) transforms coordinates between node and screen space
+<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setConstraint-frames.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/nub-javadocs/nub/primitives/constraint/Constraint.html) to a node instance limiting its motion
 
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (detached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 
 ```processing
  World
@@ -1575,7 +1575,7 @@ void draw() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 
 ```processing
  World
@@ -1611,7 +1611,7 @@ void setup() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 
 ```processing
  World
@@ -1632,7 +1632,7 @@ void draw() {
 V:
 
 ## Modelling and view in [frames](https://github.com/VisualComputing/frames)
-### Using (attached) [nodes](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Frame.html)
+### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 #### Advantages
 
 <li class="fragment"> Same as with _detached_ nodes, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling _render()_
@@ -2166,11 +2166,11 @@ V:
 ## Matrix handling in [frames]((https://github.com/VisualComputing/frames)
 ### Main methods to retrieve the aforementioned matrices
 
-* Use [Node.worldMatrix()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#worldMatrix--) to retrieve the node _model_ matrix
-* Use [Node.view()](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#view--) to retrieve the node _view_ matrix.
-* Use [Node.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/frames-javadocs/frames/core/Frame.html#projection-frames.core.Graph.Type-float-float-float-float-boolean-) to retrieve the node _projection_ matrix.
-    * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
-    * Use [Node.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/frames-javadocs/frames/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
+* Use [Node.worldMatrix()](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldMatrix--) to retrieve the node _model_ matrix
+* Use [Node.view()](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#view--) to retrieve the node _view_ matrix.
+* Use [Node.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#projection-frames.core.Graph.Type-float-float-float-float-boolean-) to retrieve the node _projection_ matrix.
+    * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
+    * Use [Node.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
 
 H:
 
@@ -2186,4 +2186,4 @@ H:
 
 ## Acknowledgements
 
-* [Jean Pierre Alfonso](https://www.linkedin.com/in/jean-pierre-alfonso-hoyos-59b46359/), for formatting some [mathjax](https://www.mathjax.org/) formulas
+* Jean Pierre Alfonso, for formatting some [mathjax](https://www.mathjax.org/) formulas
