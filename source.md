@@ -2085,10 +2085,10 @@ w_c \cr
 \end{bmatrix}
 = 
 \begin{bmatrix}
-1 \above 1pt \tan (fov/2)aspectRatio & 0                   & 0                     & 0                   \cr
-0                                     & \tan (fov/2)       & 0                     & 0                   \cr
-0                                     & 0                   & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
-0                                     & 0                   & -1                    & 0                   \cr
+1 \above 1pt \tan (fov/2)aspectRatio & 0                           & 0                     & 0                   \cr
+0                                     & 1 \above 1pt \tan (fov/2)  & 0                     & 0                   \cr
+0                                     & 0                          & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
+0                                     & 0                          & -1                    & 0                   \cr
 \end{bmatrix} \bullet \begin{bmatrix} 
 x_e \cr 
 y_e \cr
@@ -2147,7 +2147,7 @@ H:
 ## Matrix handling in [nub](https://visualcomputing.github.io/nub-javadocs/)
 ### Geometry data mapping
 
-* The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">frame</a> space to world space
+* The _model_ matrix (`$M$`) maps from (object) <a href="#/6/8">node</a> space to world space
 * The <a href="#/6/13">view</a> matrix (`$V$`) maps from world space to eye space
 * The _projection_ (`$P$`) matrix maps from eye space to <a href="#/7">clip space</a>
 
@@ -2169,8 +2169,8 @@ V:
 * Use [Node.worldMatrix()](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldMatrix--) to retrieve the node _model_ matrix
 * Use [Node.view()](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#view--) to retrieve the node _view_ matrix.
 * Use [Node.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#projection-nub.core.Graph.Type-float-float-float-float-boolean-) to retrieve the node _projection_ matrix.
-    * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/primitives/Matrix.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
-    * Use [Node.perspective(magnitude, aspectRatio, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/primitives/Matrix.html#perspective-float-float-float-float-) to retrieve the _perspective_ matrx.
+    * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
+    * Use [Node.perspective(aspectRatio, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#perspective-float-float-float-) to retrieve the _perspective_ matrx.
 
 H:
 
