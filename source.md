@@ -1599,9 +1599,8 @@ void setup() {
   // reference node paramater, such as Node(Node referenceNode)
   n2 = new Node(n1) {
     @Override
-    public boolean graphics(PGraphics pg) {
+    public void graphics(PGraphics pg) {
       Scene.drawTorusSolenoid(pg);
-      return true;
     }
   };
   n3 = new Node(n1, createShape(BOX, 60));
@@ -1639,8 +1638,8 @@ V:
 <li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
 <li class="fragment"> Attached nodes can exhibit _inverse kinematics_ (in the works) behavior
 <li class="fragment"> Nodes are picked precisely using ray-tracing against the pixels of their shape projections
-<li class="fragment"> Call `shape(PShape)` to bind a retained mode PShape to the node
-<li class="fragment"> Override `boolean graphics(PGraphics)` to bind an immediate mode rendering procedure to the node
+<li class="fragment"> Call `setShape(PShape)` to bind a retained mode PShape to the node
+<li class="fragment"> Override `graphics(PGraphics)` to bind an immediate mode rendering procedure to the node
 
 H:
 
