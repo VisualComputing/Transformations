@@ -2171,6 +2171,10 @@ V:
 * Use [Node.projection(type, width, height, zNear, zFar,leftHanded)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#projection-nub.core.Graph.Type-float-float-float-float-boolean-) to retrieve the node _projection_ matrix.
     * Use [Node.orthographic(width, height, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#orthographic-float-float-float-float-) to retrieve the _orthographic_ matrix.
     * Use [Node.perspective(aspectRatio, zNear, zFar)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#perspective-float-float-float-) to retrieve the _perspective_ matrx.
+* Use [Scene.projection()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#projection--) to retrieve the cached _projection_ matrix computed with the scene [eye()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#eye--).
+* Use [Scene.view()]() to retrieve the cached _view_ matrix computed with the scene [eye()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#eye--).
+* Use [Scene.projectionView()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#projectionView--) to retrieve the cached _projection_ times _view_ matrix.
+* Use [Scene.projectionViewInverse()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#projectionViewInverse--) to retrieve the cached _projection_ times _view_ inverse matrix (requires to call [cacheProjectionViewInverse()](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#cacheProjectionViewInverse-boolean-) first).
 
 H:
 
