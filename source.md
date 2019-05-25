@@ -2071,6 +2071,62 @@ V:
 <blockquote>
 `$$l=-r$$`
 `$$b=-t$$`
+</blockquote>
+
+<p class="fragment" data-fragment-index="1">
+`$\begin{bmatrix} 
+x_c \cr 
+y_c \cr
+z_c \cr
+w_c \cr
+\end{bmatrix}
+= 
+\begin{bmatrix}
+n & 0 & 0                     & 0                   \cr
+0 & n & 0                     & 0                   \cr
+0 & 0 & -(f+n) \above 1pt f-n & -2fn \above 1pt f-n \cr
+0 & 0 & -1                    & 0                   \cr
+\end{bmatrix} \bullet \begin{bmatrix} 
+x_e \cr 
+y_e \cr
+z_e \cr
+w_e(=1) \cr
+\end{bmatrix}
+$`
+</p>
+
+<p class="fragment" data-fragment-index="2">
+`$P_c = Persp(n,f) \bullet P_e$`
+</p>
+
+V:
+
+## Projections: Perspective
+### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
+
+<figure>
+    <img height="400" src="fig/pimage10.JPG">
+    <figcaption>Horizontal field-of-view (fov)</figcaption>
+</figure>
+
+V:
+
+## Projections: Perspective
+### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
+
+<figure>
+    <img height="400" src="fig/pimage12.JPG">
+    <figcaption>Scaling of the frustum</figcaption>
+</figure>
+
+V:
+
+## Projections: Perspective
+### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
+
+<blockquote>
+`$$l=-r$$`
+`$$b=-t$$`
 `$$aspectRatio=screenWidth/screenHeight$$`
 `$fov:$` (horizontal) field-of-view (in radians)
 </blockquote>
