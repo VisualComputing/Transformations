@@ -2204,16 +2204,6 @@ V:
 V:
 
 ## Projections: Perspective
-### Alternative form: Symmetrical viewing volume (`$l=-r$` and `$b=-t$`)
-
-<figure>
-    <img height="400" src="fig/pimage12.JPG">
-    <figcaption>Scaling of the frustum</figcaption>
-</figure>
-
-V:
-
-## Projections: Perspective
 ### Example
 
 <div id='perspective_id'></div>
