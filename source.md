@@ -35,7 +35,7 @@ H:
     * Homogeneous space
     * Translation
     * Scaling, rotation & shearing revisited
-    * Matrix operations: orthogonality, inversion & composition
+    * Inversion & composition
 
 V:
 
@@ -46,6 +46,8 @@ V:
     * Orthographic
     * Perspective
  6. Matrix handling in the nub framework<!-- .element: class="fragment" data-fragment-index="6"-->
+ 7. References<!-- .element: class="fragment" data-fragment-index="7"-->
+ 8. Annex: Matrix orthogonality<!-- .element: class="fragment" data-fragment-index="8"-->
  
 H:
 
@@ -808,62 +810,8 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
-### Orthogonality
-
-A matrix `$$M = \begin{bmatrix}
-        m_{11} & m_{12} & m_{13} \cr
-        m_{21} & m_{22} & m_{33} \cr
-        m_{31} & m_{32} & m_{33} \cr
-\end{bmatrix}$$`
-
-is orthogonal _iff_:
-
-$$MM^{T} = I$$
-
-This is equivalent to: <!-- .element: class="fragment" data-fragment-index="1"-->
-
-$$M^{-1} = M^{T}$$ <!-- .element: class="fragment" data-fragment-index="1"-->
-
-V:
-
-## Orthogonal matrix
-### Orthogonality: Geometric Interpretation
-
-Let
-
-`$$r_{1} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix}$$`
-`$$r_{2} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix}$$`
-`$$r_{3} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix}$$`
-
-then <!-- .element: class="fragment" data-fragment-index="1"-->
-
-`$$r_{1} \cdot r_{1} = r_{2} \cdot r_{2} = r_{3} \cdot r_{3} = 1 $$`<!-- .element: class="fragment" data-fragment-index="1"-->
-`$$r_{i} \cdot r_{j} = 0\ \ i=1,2,3 \ \ j=1,2,3 \ \ i\ne j$$`<!-- .element: class="fragment" data-fragment-index="1"-->
-
-V:
-
-## Orthogonal matrix
-### Orthogonality: Geometric Interpretation
-
-We can conclude that:
-
-* Each row of the matrix must be a unit vector
-* The rows of the matrix must be mutually perpendicular
-* Vectors  `$r_{1}, \,r_{2}, \,r_{3}$` are _orthonormals_
-
-> Note 1: that $r_1$, $r_2$ and $r_3$ form a non-canonical basis<!-- .element: class="fragment" data-fragment-index="1"-->
-
-> Note 2: that a rotation matrix is always orthogonal<!-- .element: class="fragment" data-fragment-index="2"-->
-
-N:
-
-* Orthogonality is used in both: euler angles (composition) and rodrigues formula
-
-V:
-
-## Affine transformations: Matrix operations
-### Inversion
+## Affine transformations: Inversion
+### Definition
 
 Let $M$ be an affine transformation matrix such that:
 
@@ -881,7 +829,7 @@ $$M^{-1}P'=M^{-1}MP=(M^{-1}M)P=IP=P$$
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Inversion
 ### Affine inverse matrices
 
 | Transformation |    Direct     |      Inverted       |
@@ -893,8 +841,8 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
-### Composition
+## Affine transformations: Composition
+### Notion
 
 Consider the following sequence of transformations:
 
@@ -914,7 +862,7 @@ Mnemonic 2:<!-- .element: class="fragment" data-fragment-index="8"-->
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Scaling respect to $(x_f,y_f)$
 
 <figure>
@@ -923,7 +871,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Scaling respect to $(x_f,y_f)$
 
 <figure>
@@ -933,7 +881,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Scaling respect to $(x_r,y_r)$
 $T(x_f,y_f)S(sx,sy)T(-x_f,-y_f)$ Processing implementation
 
@@ -941,7 +889,7 @@ $T(x_f,y_f)S(sx,sy)T(-x_f,-y_f)$ Processing implementation
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 
 <figure>
@@ -950,7 +898,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 
 <figure>
@@ -960,7 +908,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation
 
@@ -968,7 +916,7 @@ $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: `applyMatrix()`
 
@@ -1000,7 +948,7 @@ void draw() {
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: Rotation respect to $(x_r,y_r)$, $\beta$
 $T(x_r,y_r)R_z(\beta)T(-x_r,-y_r)$ Processing implementation: `translation()` and `rotation()`
 
@@ -1022,7 +970,7 @@ void draw() {
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 
 <div class="ulist">
@@ -1048,7 +996,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 
 <figure>
@@ -1058,7 +1006,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Step 2
 
@@ -1088,7 +1036,7 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
 #### Step 3
 
@@ -1127,58 +1075,11 @@ V:
 
 V:
 
-## Affine transformations: Matrix operations
+## Affine transformations: Composition
 ### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
-#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
+#### Step 2 and 3 performed at once
 
-<figure>
-    <img height="550" src="fig/rxry_overview.png">
-    <figcaption>Suppose $u$ is part of a non-canonical basis $x', y', z'$</figcaption>
-</figure>
-
-V:
-
-## Affine transformations: Matrix operations
-### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
-#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
-
-<div class="ulist">
-    <img src="fig/rxry.png" alt="3d rotation: rx-ry" width="40%" style="float: left">
-    <ul style="width: 50%;">
-        <p>
-        `$
-        R_y(\lambda) * R_x(\alpha)
-        = 
-        \begin{bmatrix}
-        u_{x'1} & u_{x'2} & u_{x'3} & 0 \cr
-        u_{y'1} & u_{y'2} & u_{y'3} & 0 \cr
-        u_{z'1} & u_{z'2} & u_{z'3} & 0 \cr
-        0 & 0 & 0 & 1 \cr
-        \end{bmatrix}
-        $`
-        </p>
-        <p class="fragment" data-fragment-index="1">
-        where
-        </p>
-        <p class="fragment" data-fragment-index="1">
-        `$u_{z'}=u$`
-        </p>
-        <p class="fragment" data-fragment-index="1">
-        `$u_{x'}$` is _any_ orthogonal vector to `$u_{z'}$`
-        </p>
-        <p class="fragment" data-fragment-index="1">
-        `$u_{y'} = u \times u_{x'}$`
-        </p>
-        
-    </ul>
-</div>
-
-N:
-
-missing:
-1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda) * R_x(\alpha)
-2. Affine transformations: Rotation: Quaternions magic
-3. Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
+You may also used <a href="#/10">matrix orthogonality</a> to compute <a href="#/10/3">steps 2 and 3</a> ($R_y(\lambda) * R_x(\alpha)$) at once
 
 H:
 
@@ -1634,7 +1535,7 @@ V:
 ### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 #### Advantages
 
-<li class="fragment"> Same as with _detached_ nodes, but traversing the hierarchy doesn't require any prior knowledge of it, but simply calling _render()_
+<li class="fragment"> Same as with _detached_ nodes, but simply call _render()_ to travere the hierarchy (which doesn't require any prior knowledge of it)
 <li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
 <li class="fragment"> Attached nodes can exhibit _inverse kinematics_ (in the works) behavior
 <li class="fragment"> Nodes are picked precisely using ray-tracing against the pixels of their shape projections
@@ -2290,6 +2191,115 @@ H:
 * [Processing 2d transformations tutorial](https://www.processing.org/tutorials/transform2d/)
 * [OpenGL projection matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html)
 * [The Perspective and Orthographic Projection Matrix](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix)
+
+H:
+
+## Annex: Matrix orthogonality
+### Definition
+
+A matrix `$$M = \begin{bmatrix}
+        m_{11} & m_{12} & m_{13} \cr
+        m_{21} & m_{22} & m_{33} \cr
+        m_{31} & m_{32} & m_{33} \cr
+\end{bmatrix}$$`
+
+is orthogonal _iff_:
+
+$$MM^{T} = I$$
+
+This is equivalent to: <!-- .element: class="fragment" data-fragment-index="1"-->
+
+$$M^{-1} = M^{T}$$ <!-- .element: class="fragment" data-fragment-index="1"-->
+
+V:
+
+## Annex: Matrix orthogonality
+### Geometric Interpretation
+
+Let
+
+`$$r_{1} = \begin{bmatrix} m_{11} & m_{12} & m_{13} \end{bmatrix}$$`
+`$$r_{2} = \begin{bmatrix} m_{21} & m_{22} & m_{23} \end{bmatrix}$$`
+`$$r_{3} = \begin{bmatrix} m_{31} & m_{32} & m_{33} \end{bmatrix}$$`
+
+then <!-- .element: class="fragment" data-fragment-index="1"-->
+
+`$$r_{1} \cdot r_{1} = r_{2} \cdot r_{2} = r_{3} \cdot r_{3} = 1 $$`<!-- .element: class="fragment" data-fragment-index="1"-->
+`$$r_{i} \cdot r_{j} = 0\ \ i=1,2,3 \ \ j=1,2,3 \ \ i\ne j$$`<!-- .element: class="fragment" data-fragment-index="1"-->
+
+V:
+
+## Annex: Matrix orthogonality
+### Geometric Interpretation
+
+We can conclude that:
+
+* Each row of the matrix must be a unit vector
+* The rows of the matrix must be mutually perpendicular
+* Vectors  `$r_{1}, \,r_{2}, \,r_{3}$` are _orthonormals_
+
+> Note 1: that $r_1$, $r_2$ and $r_3$ form a non-canonical basis<!-- .element: class="fragment" data-fragment-index="1"-->
+
+> Note 2: that a rotation matrix is always orthogonal<!-- .element: class="fragment" data-fragment-index="2"-->
+
+N:
+
+* Orthogonality is used in both: euler angles (composition) and rodrigues formula
+
+V:
+
+## Annex: Matrix orthogonality
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
+#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
+
+<figure>
+    <img height="550" src="fig/rxry_overview.png">
+    <figcaption>Suppose $u$ is part of a non-canonical basis $x', y', z'$</figcaption>
+</figure>
+
+V:
+
+## Annex: Matrix orthogonality
+### Mnemonic 1 examples: 3D Rotation `$T(x_1,y_1,z_1) * R_u(\beta) * T(-x_1,-y_1,-z_1)$`
+#### Using orthogonality to compute $R_y(\lambda) * R_x(\alpha)$
+
+<div class="ulist">
+    <img src="fig/rxry.png" alt="3d rotation: rx-ry" width="40%" style="float: left">
+    <ul style="width: 50%;">
+        <p>
+        `$
+        R_y(\lambda) * R_x(\alpha)
+        = 
+        \begin{bmatrix}
+        u_{x'1} & u_{x'2} & u_{x'3} & 0 \cr
+        u_{y'1} & u_{y'2} & u_{y'3} & 0 \cr
+        u_{z'1} & u_{z'2} & u_{z'3} & 0 \cr
+        0 & 0 & 0 & 1 \cr
+        \end{bmatrix}
+        $`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        where
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{z'}=u$`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{x'}$` is _any_ orthogonal vector to `$u_{z'}$`
+        </p>
+        <p class="fragment" data-fragment-index="1">
+        `$u_{y'} = u \times u_{x'}$`
+        </p>
+        
+    </ul>
+</div>
+
+N:
+
+missing:
+1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda) * R_x(\alpha)
+2. Affine transformations: Rotation: Quaternions magic
+3. Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
 
 H:
 
