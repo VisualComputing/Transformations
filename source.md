@@ -1384,7 +1384,7 @@ V:
 V:
 
 ## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
+### [Node](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html) trees
 
 ```processing
  World
@@ -1400,45 +1400,29 @@ V:
 Scene scene;
 Node n1, n2, n3;
 void setup() {
-  // Note that the scene.eye() is also instantiated
   scene = new Scene(this);
-  // Note the use of the default node constructor to instantiate a
-  // detached leading node (those whose parent is the world, such as f1):
+  // Create a top-level (shapeless) node (i.e., a node whose reference is null) with:
   n1 = new Node();
-  // whereas for the remaining nodes we pass any
-  // constructor taking a reference node paramater:
-  n2 = new Node(n1);
-  n3 = new Node(n1);
+  // whereas for the remaining nodes we pass any constructor taking a
+  // reference node parameter, such as Node(Node referenceNode)
+  n2 = new Node(n1) {
+    // Immediate rendering mode
+    @Override
+    public void graphics(PGraphics pg) {
+      Scene.drawTorusSolenoid(pg);
+    }
+  };
+  // Retained rendering mode
+  n3 = new Node(n1, createShape(BOX, 60));
 }
 ```
 
-V:
-
-## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
-#### Advantages
-
-<li class="fragment"> The scene gets automatically rendered respect to the `eye` node
-<li class="fragment"> The graph topology is set (even at run time) with [setReference(node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setReference-nub.core.Node-).
-<li class="fragment"> Nodes may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
-<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setTranslation-nub.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#translate-nub.primitives.Vector-), [setRotation(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setRotation-nub.primitives.Quaternion-), [rotate(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#rotate-nub.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#scale-float-), locally manipulates a node instance
+> Check [immediate](https://en.wikipedia.org/wiki/Immediate_mode_(computer_graphics%29) and [retained](https://en.wikipedia.org/wiki/Retained_mode) rendering modes
 
 V:
 
 ## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
-#### Advantages
-
-<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setPosition-nub.primitives.Vector-), [setOrientation(Quaterion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setOrientation-nub.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setMagnitude-float-), globally manipulates node instances
-<li class="fragment"> (the node methods) [location(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#location-nub.primitives.Vector-nub.core.Node-) and [displacement(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#displacement-nub.primitives.Vector-nub.core.Node-) transforms coordinates and vectors (resp.) from other node instances
-<li class="fragment"> (the node methods) [worldLocation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldLocation-nub.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldDisplacement-nub.primitives.Vector-) transforms node coordinates and vectors (resp.) to the world
-<li class="fragment"> (the graph methods) [location(vector, node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#location-nub.primitives.Vector-nub.core.Node-) and [screenLocation(vector, node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#screenLocation-nub.primitives.Vector-nub.core.Node-) transforms coordinates between node and screen space
-<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setConstraint-nub.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/nub-javadocs/nub/primitives/constraint/Constraint.html) to a node instance limiting its motion
-
-V:
-
-## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (detached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
+### [Node](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html) manual traversals
 
 ```processing
  World
@@ -1455,17 +1439,17 @@ void draw() {
   // enter n1
   pushMatrix();
   scene.applyTransformation(n1);
-  drawN1();
+  scene.draw(n1);
   // enter n2
   pushMatrix();
   scene.applyTransformation(n1);
-  drawN2();
+  scene.draw(n2);
   // "return" to n1
   popMatrix();
   // enter n3
   pushMatrix();
   scene.applyTransformation(n3);
-  drawN3();
+  scene.draw(n3);
   // return to n1
   popMatrix();
   // return to World
@@ -1476,42 +1460,7 @@ void draw() {
 V:
 
 ## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
-
-```processing
- World
-  ^
-  |\
- n1 eye
-  ^
-  |\
- n2  n3
-```
-
-```processing
-Scene scene;
-Node n1, n2, n3;
-void setup() {
-  scene = new Scene(this);
-  // To attach a leading-node (those whose parent is the world, such as n1)
-  // the scene parameter is passed to the node constructor:
-  n1 = new Node(scene);
-  // whereas for the remaining nodes we pass any constructor taking a
-  // reference node paramater, such as Node(Node referenceNode)
-  n2 = new Node(n1) {
-    @Override
-    public void graphics(PGraphics pg) {
-      Scene.drawTorusSolenoid(pg);
-    }
-  };
-  n3 = new Node(n1, createShape(BOX, 60));
-}
-```
-
-V:
-
-## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
+### [Node](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html) automatic traversals
 
 ```processing
  World
@@ -1532,15 +1481,25 @@ void draw() {
 V:
 
 ## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
-### Using (attached) [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
+### Using [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
 #### Advantages
 
-<li class="fragment"> Same as with _detached_ nodes, but simply call _render()_ to travere the hierarchy (which doesn't require any prior knowledge of it)
-<li class="fragment"> ... which also means there's no need to call `pushMatrix()` and `popMatrix()`
-<li class="fragment"> Attached nodes can exhibit _inverse kinematics_ (in the works) behavior
-<li class="fragment"> Nodes are picked precisely using ray-tracing against the pixels of their shape projections
-<li class="fragment"> Call `setShape(PShape)` to bind a retained mode PShape to the node
-<li class="fragment"> Override `graphics(PGraphics)` to bind an immediate mode rendering procedure to the node
+<li class="fragment"> The scene gets automatically rendered respect to the `eye` node
+<li class="fragment"> The graph topology is set (even at run time) with [setReference(node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setReference-nub.core.Node-).
+<li class="fragment"> Nodes may be picked using ray-casting and the scene provides all sorts of interactivity commands to manipulate them.
+<li class="fragment"> [setTranslation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setTranslation-nub.primitives.Vector-), [translate(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#translate-nub.primitives.Vector-), [setRotation(Quaternion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setRotation-nub.primitives.Quaternion-), [rotate(Quaternion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#rotate-nub.primitives.Quaternion-), [setScaling(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setScaling-float-) and [scale(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#scale-float-), locally manipulates a node instance
+
+V:
+
+## Modelling and view in [nub](https://visualcomputing.github.io/nub-javadocs/)
+### Using [nodes](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html)
+#### Advantages
+
+<li class="fragment"> [setPosition(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setPosition-nub.primitives.Vector-), [setOrientation(Quaternion)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setOrientation-nub.primitives.Quaternion-), and [setMagnitude(float)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setMagnitude-float-), globally manipulates node instances
+<li class="fragment"> (the node methods) [location(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#location-nub.primitives.Vector-nub.core.Node-) and [displacement(Vector, Node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#displacement-nub.primitives.Vector-nub.core.Node-) transforms coordinates and vectors (resp.) from other node instances
+<li class="fragment"> (the node methods) [worldLocation(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldLocation-nub.primitives.Vector-) and [worldDisplacement(Vector)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#worldDisplacement-nub.primitives.Vector-) transforms node coordinates and vectors (resp.) to the world
+<li class="fragment"> (the graph methods) [location(vector, node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#location-nub.primitives.Vector-nub.core.Node-) and [screenLocation(vector, node)](https://visualcomputing.github.io/nub-javadocs/nub/core/Graph.html#screenLocation-nub.primitives.Vector-nub.core.Node-) transforms coordinates between node and screen space
+<li class="fragment"> [setConstraint(Constrain)](https://visualcomputing.github.io/nub-javadocs/nub/core/Node.html#setConstraint-nub.core.constraint.Constraint-) applies a [Constraint](https://visualcomputing.github.io/nub-javadocs/nub/primitives/constraint/Constraint.html) to a node instance limiting its motion
 
 H:
 
