@@ -7,7 +7,7 @@
 
 var sketch = function( p ) {
     p.setup = function() {
-      p.createCanvas(700, 700, p.WEBGL);
+      p.createCanvas(600, 600, p.WEBGL);
       var fov = 60 / 180 * p.PI;
       var cameraZ = p.height / 2.0 / p.tan(fov / 2.0);
       p.perspective(60 / 180 * p.PI, p.width / p.height, cameraZ * 0.1, cameraZ * 10);

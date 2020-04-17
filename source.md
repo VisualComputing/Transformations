@@ -28,7 +28,6 @@ H:
 ## Index
 
  1. Intro<!-- .element: class="fragment" data-fragment-index="1"-->
-    * Active vs pasive transformations
  2. Linear transformations<!-- .element: class="fragment" data-fragment-index="2"-->
     * Scaling, rotation & shearing
  3. Affine transformations<!-- .element: class="fragment" data-fragment-index="3"-->
@@ -46,9 +45,17 @@ H:
 
 ## Intro
 
-Key:
-Instructions: 
-Composition -> SceneGraphs
+* Affine transformations are key to develop:<!-- .element: class="fragment" data-fragment-index="1"-->
+    * [SceneGraphs](https://github.com/VisualComputing/SceneGraphs)
+    * [Shaders](https://github.com/VisualComputing/Shaders)
+    * [Interactive virtual reality applications](https://github.com/VisualComputing/Interaction)
+* Read carefully this presentation & these references if you need more detailed explanations:<!-- .element: class="fragment" data-fragment-index="2"-->
+    * Affine transformations are found in [3D Math primer for Graphics and Game Development – chs. 8 & 9](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf)
+    * Projections matrices are found in [OpenGL projection matrix](http://www.songho.ca/opengl/gl_projectionmatrix.html)
+* 3D Rotations methods<!-- .element: class="fragment" data-fragment-index="3"-->
+    * Euler angles (discussed here)
+    * Matrix orthogonality (discussed here)
+    * Quaternions (best method and the one supported in [nub](https://github.com/VisualComputing/nub), not yet included in this presentation but discussed in [3D Math primer for Graphics and Game Development – ch. 10](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf))
 
 N:
 
@@ -966,6 +973,7 @@ V:
 ### Example
 
 <div id='orthographic_id'></div>
+Adapted from [ortho](https://p5js.org/reference/#/p5/ortho)
 
 V:
 
@@ -975,7 +983,7 @@ V:
 ```processing
 var sketch = function( p ) {
     p.setup = function() {
-      p.createCanvas(700, 700, p.WEBGL);
+      p.createCanvas(600, 600, p.WEBGL);
       // define an orthographic matrix projection
       p.ortho(-p.width / 2, p.width / 2, p.height / 2, -p.height / 2, 0, 1000);
     };
@@ -1398,6 +1406,7 @@ V:
 ### Example
 
 <div id='perspective_id'></div>
+Adapted from [perspective](https://p5js.org/reference/#/p5/perspective)
 
 V:
 
@@ -1407,7 +1416,7 @@ V:
 ```processing
 var sketch = function( p ) {
     p.setup = function() {
-      p.createCanvas(700, 700, p.WEBGL);
+      p.createCanvas(600, 600, p.WEBGL);
       var fov = 60 / 180 * p.PI;
       var cameraZ = p.height / 2.0 / p.tan(fov / 2.0);
       // define a perspective matrix projection

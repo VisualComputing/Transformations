@@ -7,7 +7,7 @@
 
 var sketch = function( p ) {
     p.setup = function() {
-      p.createCanvas(700, 700, p.WEBGL);
+      p.createCanvas(600, 600, p.WEBGL);
       p.ortho(-p.width / 2, p.width / 2, p.height / 2, -p.height / 2, 0, 1000);
     };
 
