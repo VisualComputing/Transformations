@@ -55,7 +55,7 @@ H:
 * 3D Rotations methods<!-- .element: class="fragment" data-fragment-index="3"-->
     * Euler angles (discussed here)
     * Matrix orthogonality (discussed here)
-    * Quaternions (best method and the one supported in [nub](https://github.com/VisualComputing/nub), not yet included in this presentation but discussed in [3D Math primer for Graphics and Game Development – ch. 10](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf))
+    * Quaternions (best method and the one supported in [nub](https://visualcomputing.github.io/nub-javadocs/nub/primitives/Quaternion.html), not yet included in this presentation but discussed in [3D Math primer for Graphics and Game Development – ch. 10](https://tfetimes.com/wp-content/uploads/2015/04/F.Dunn-I.Parberry-3D-Math-Primer-for-Graphics-and-Game-Development.pdf))
 
 N:
 
