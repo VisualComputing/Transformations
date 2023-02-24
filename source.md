@@ -1562,9 +1562,3 @@ missing:
 1. Affine transformations: Rotation: use orthogonality to compute R_y(\lambda) * R_x(\alpha)
 2. Affine transformations: Rotation: Quaternions magic
 3. Affine transformations: Rotation: [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula)
-
-H:
-
-## Acknowledgements
-
-* Jean Pierre Alfonso, for formatting some [mathjax](https://www.mathjax.org/) formulas
